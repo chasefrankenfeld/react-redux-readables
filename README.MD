@@ -1,4 +1,4 @@
-#React Redux - Readables (Udacity Course)
+# React Redux - Readables (Udacity Course)
 
 *https://github.com/udacity/reactnd-project-readable-starter*
 
