@@ -4,16 +4,16 @@ class Nav extends Component {
   render() {
     return (
       <div>
-          <div class="nav">
-            <div class="content-container">
+          <div className="nav">
+            <div className="content-container">
                 <div>
-                    <div class="brand">
+                    <div className="brand">
                         <a href="/">
                             Readables
                         </a>
                     </div>
 
-                    <div class="tagline">
+                    <div className="tagline">
                         This is a Udacity React-Redux course
                     </div>
 
@@ -22,29 +22,29 @@ class Nav extends Component {
         </div>
 
 
-        <div class="tabs ">
-            <div class="content-container">
+        <div className="tabs ">
+            <div className="content-container">
 
-                <a class="light-link active" href="/">
+                <a className="light-link active" href="/">
                     Home
                 </a>
-                <a class="light-link " href="#">
+                <a className="light-link " href="#">
                     Bla bla
                 </a>
 
-                <a class="light-link " href="#">
+                <a className="light-link " href="#">
                     Maybe something else
                 </a>
             </div>
         </div>
 
-        <div class="book-section book-section-cta">
-            <div class="content-container book-section-cta-inner">
-                <div class="ama-content">
-                    <div class="ama-content-title">
-                        We're a community of self driven learners, innovators and advancers
+        <div className="book-section book-section-cta">
+            <div className="content-container book-section-cta-inner">
+                <div className="ama-content">
+                    <div className="ama-content-title">
+                        We're a community of self driven learners, innovators and doers
                     </div>
-                    <div class="ama-content-subtitle">
+                    <div className="ama-content-subtitle">
                         Join us in the journey of self improvement, growth and knowledge
                     </div>
                 </div>
