@@ -7,16 +7,24 @@ import Nav from './Nav';
 class App extends Component {
 
   componentDidMount() {
-    this.props.showAllPosts(API.getAllPosts())
+    
+    API.fetchAllPosts().then((data) => 
+      this.props.showAllPosts(
+        data.reduce((postsObject, item) => ({
+          ...postsObject,
+          [item.id]: item
+        }),{})
+      )
+    )
+
   };
 
   render() {
-    console.log('Props', this.props)
     return (
       <div className="App">
         <Nav />
         <div>
-          <h1>Hello World!</h1>
+          {console.log(this.props.posts)}
         </div>
       </div>
     );

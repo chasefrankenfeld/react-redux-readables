@@ -1,5 +1,6 @@
 import { GET_ALL_POSTS } from '../actions';
 
+
 const posts = (state = {}, action) => {
     const { posts } = action;
 

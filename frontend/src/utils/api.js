@@ -12,7 +12,8 @@ const headers = {
 
 // Get home page posts
 
-export const getAllPosts = () => (
+export const fetchAllPosts = () => (
   fetch(`${API}/posts`, { headers })
     .then((res) => res.json())
+    .then((data) => data)
 );
