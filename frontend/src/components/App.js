@@ -1,30 +1,30 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import * as API from '../utils/api';
-import { getAllPosts } from '../actions';
+import { fetchAllPosts } from '../actions';
 import Nav from './Nav';
 
 class App extends Component {
 
   componentDidMount() {
-    
-    API.fetchAllPosts().then((data) => 
-      this.props.showAllPosts(
-        data.reduce((postsObject, item) => ({
-          ...postsObject,
-          [item.id]: item
-        }),{})
-      )
-    )
-
+      this.props.showAllPosts()
   };
 
   render() {
+
+    let posts = Object.keys(this.props.posts).map((data)=>(this.props.posts[data]))
+
     return (
       <div className="App">
+        {console.log(posts)}
         <Nav />
         <div>
-          {console.log(this.props.posts)}
+          <ul>
+            {posts.map((post) => 
+              <li key="{post.id}">
+                <p>{post.id}</p>
+              </li>
+            )}
+          </ul>
         </div>
       </div>
     );
@@ -32,13 +32,13 @@ class App extends Component {
 }
 
 const mapStateToProps = (posts) => {
-  return ({
+  return {
     posts
-  })
+  }
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  showAllPosts: (posts) => dispatch(getAllPosts(posts))
+  showAllPosts: () => dispatch(fetchAllPosts())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
