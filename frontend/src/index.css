@@ -254,6 +254,17 @@ a.no-ul {
   top: 1px;
 }
 
+.post-action-button .icon-downvote {
+  display: inline-block;
+  width: 0px;
+  height: 0px;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 11px solid #bbbbbb;
+  position: relative;
+  top: 1px;
+}
+
 .post-action-button-margin {
   margin-left: 3px;
 }

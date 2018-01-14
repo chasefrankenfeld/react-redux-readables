@@ -1,18 +1,8 @@
-import { GET_ALL_POSTS } from '../actions';
+import { combineReducers } from 'redux'
+import categories from './categories'
+import posts from './posts'
 
-
-const posts = (state = {}, action) => {
-    const { posts } = action;
-
-    switch(action.type) {
-        case GET_ALL_POSTS:
-            return {
-                ...state,
-                posts
-            }
-        default:
-            return state
-    }
-};
-
-export default posts;
+export default combineReducers({
+  categories,
+  posts
+});

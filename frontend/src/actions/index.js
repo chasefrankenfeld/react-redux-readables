@@ -1,8 +1,9 @@
 import * as API from '../utils/api';
 
 export const GET_ALL_POSTS = 'GET_ALL_POSTS';
+export const GET_ALL_CATEGORIES = 'GET_ALL_CATEGORIES';
 
-// Get all posts
+// Get Posts
 
 export const fetchAllPosts = () => dispatch => (
     API.fetchAllPosts().then((posts) => {
@@ -26,4 +27,17 @@ export const fetchAllPosts = () => dispatch => (
 export const getAllPosts = (posts) => ({
     type: GET_ALL_POSTS,
     posts
+});
+
+// Get Categories
+
+export const fetchAllCategories = () => dispatch => (
+    API.fetchAllPosts().then((categories) => {
+        dispatch(getAllCategories(categories))
+    })
+);
+
+export const getAllCategories = (categories) => ({
+    type: GET_ALL_CATEGORIES,
+    categories
 });
