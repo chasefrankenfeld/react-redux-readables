@@ -21,31 +21,14 @@ class Nav extends Component {
             </div>
         </div>
 
-
-        <div className="tabs ">
-            <div className="content-container">
-
-                <a className="light-link active" href="/">
-                    Home
-                </a>
-                <a className="light-link " href="#">
-                    Bla bla
-                </a>
-
-                <a className="light-link " href="#">
-                    Maybe something else
-                </a>
-            </div>
-        </div>
-
-        <div className="book-section book-section-cta">
-            <div className="content-container book-section-cta-inner">
+        <div className="post-section post-section-cta">
+            <div className="content-container post-section-cta-inner">
                 <div className="ama-content">
                     <div className="ama-content-title">
-                        We're a community of self driven learners, innovators and doers
+                        Udacity
                     </div>
                     <div className="ama-content-subtitle">
-                        Join us in the journey of self improvement, growth and knowledge
+                        Learning React-Redux
                     </div>
                 </div>
             </div>

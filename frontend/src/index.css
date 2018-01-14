@@ -137,17 +137,17 @@ a.no-ul {
 
 /* Banner */
 
-.book-section.book-section-cta {
-  background-color: #3a4a8c;
+.post-section.post-section-cta {
+  background-color: #551a8b;
   color: #FFF;
 }
 
-.book-section {
+.post-section {
   margin: 0px;
   padding: 32px 0px;
 }
 
-.book-section-cta-inner {
+.post-section-cta-inner {
   position: relative;
 }
 
@@ -187,31 +187,21 @@ a.no-ul {
 }
 
 
-/* Books */
+/* Posts */
 
 
-.book {
+.post {
   position: relative;
   padding-top: 16px;
   padding-bottom: 16px;
 }
 
-.book .post-link {
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-}
-
-
-book .book-link {
+.post .post-link {
   position: relative;
   z-index: 2;
 }
 
-.book-title a {
+.post-title a {
   color: #222222;
   font-size: 16px;
   text-decoration: none;
@@ -234,7 +224,7 @@ book .book-link {
 /* Actions */
 
 
-.article-action-button {
+.post-action-button {
   line-height: 16px;
   font-size: 12px;
   vertical-align: middle;
@@ -247,13 +237,13 @@ book .book-link {
 }
 
 
-.article-action-button i.icon {
+.post-action-button i.icon {
   position: relative;
   top: 2px;
   margin-right: 2px;
 }
 
-.article-action-button .icon-upvote {
+.post-action-button .icon-upvote {
   display: inline-block;
   width: 0px;
   height: 0px;
@@ -264,7 +254,7 @@ book .book-link {
   top: 1px;
 }
 
-.article-action-button-margin {
+.post-action-button-margin {
   margin-left: 3px;
 }
 

@@ -14,6 +14,5 @@ const headers = {
 
 export const fetchAllPosts = () => (
   fetch(`${API}/posts`, { headers })
-    .then((res) => res.json())
-    .then((data) => data)
+  .then(res => res.json())
 );

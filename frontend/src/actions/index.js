@@ -10,15 +10,18 @@ export const fetchAllPosts = () => dispatch => (
     })
 );
 
-// .fetchAllPosts().then((data) => 
-// this.props.showAllPosts((
-//   data.reduce((postsObject, item) => {
-//     postsObject[item.id] = item
-//     postsObject.allIDs.push(item.id)
-//     return postsObject
-//   }, {allIDs: []}))
-// )
-// )
+// export const fetchAllPosts = () => dispatch => (
+//     API.fetchAllPosts().then((posts) => {
+//         dispatch(getAllPosts(
+//             posts.reduce((postsObject, item) => {
+//                     postsObject[item.id] = item
+//                     postsObject.allIDs.push(item.id)
+//                     return postsObject
+//                   }, {allIDs: []}
+//             )
+//         ))
+//     })
+// );
 
 export const getAllPosts = (posts) => ({
     type: GET_ALL_POSTS,
