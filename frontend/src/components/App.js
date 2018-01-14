@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchAllPosts } from '../actions';
 import Nav from './Nav';
+import FaComment from 'react-icons/lib/fa/comment';
 
 class App extends Component {
 
@@ -10,6 +11,11 @@ class App extends Component {
   };
 
   render() {
+
+    const styleForIconUp = {
+      width: 12,
+      height: 12,
+    };
 
     const posts = Object.keys(this.props.posts).map((data) => this.props.posts[data])
 
@@ -52,15 +58,15 @@ class App extends Component {
 
               <div className="post-actions">
 
-                <a className="SaveLink post-link post-action-button save-button">
+                <a className="post-link post-action-button">
                     <i className="icon reaction-icon icon-light icon-upvote"></i>
-                    <span className="SaveText">
+                    <span className="SaveText" iconStyle={styleForIconUp}>
                         {post.voteScore}
                     </span>
                 </a>
 
                 <a className="post-link post-action-button post-action-button-margin no-ul" href="#">
-                    <i className="icon reaction-icon icon-light icon-bubble"></i>
+                    <FaComment className="icon-bubble"/>
                     <span className="CommentText">
                     {post.commentCount}
                     </span>

@@ -229,7 +229,7 @@ a.no-ul {
   font-size: 12px;
   vertical-align: middle;
   display: inline-block;
-  padding: 3px 12px 4px 12px;
+  padding: 3px 12px 4px 12px;    
   border: solid 1px #f0f0f0;
   background-color: #fafafa;
   border-radius: 3px;
@@ -247,9 +247,9 @@ a.no-ul {
   display: inline-block;
   width: 0px;
   height: 0px;
-  border-left: 7px solid transparent;
-  border-right: 7px solid transparent;
-  border-bottom: 12px solid #bbbbbb;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-bottom: 11px solid #bbbbbb;
   position: relative;
   top: 1px;
 }
@@ -259,15 +259,15 @@ a.no-ul {
 }
 
 
-.icon-bubble:before {
-  content:"";
+.post-action-button .icon-bubble {
   position: relative;
   display: inline-block;
-  width: 0px;
-  height: 0px;
-  border-top: 7px solid transparent;
-  border-right: 14px solid #bbbbbb;
-  border-bottom: 7px solid transparent;
+  margin-right: 2px;
+  color: #bbb;
+}
+
+.icon-bubble .svg.g {
+  size: 12px;
 }
 
 /* Footer */
