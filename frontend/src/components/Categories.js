@@ -1,25 +1,36 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchAllCategories } from '../utils/api';
+import { fetchAllCategories } from '../actions';
 
 class Categories extends Component {
 
     componentDidMount() {
         this.props.showAllCategories()
-    }
+    };
 
     render() {
+
+        const { categories } = this.props.categories
+
         return (
             <div>
-                {console.log(this.props.categories)}
+
+                <div className="content-container">
+                    <div className="section-name-text">
+                        {console.log(categories)}
+                        {categories.map((category) => 
+                            <a className="section-nav-link " href="#">{category.name}</a>
+                        )}
+                    </div>
+                </div>
             </div>
-        )
+        );
     }
 };
 
 
 
-const mapStateToProps = (categories) => {
+const mapStateToProps = ({categories}) => {
     return {
         categories
     }

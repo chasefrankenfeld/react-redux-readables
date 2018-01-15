@@ -32,7 +32,7 @@ export const getAllPosts = (posts) => ({
 // Get Categories
 
 export const fetchAllCategories = () => dispatch => (
-    API.fetchAllPosts().then((categories) => {
+    API.fetchAllCategories().then((categories) => {
         dispatch(getAllCategories(categories))
     })
 );
