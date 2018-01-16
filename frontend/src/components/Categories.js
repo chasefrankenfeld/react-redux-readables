@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { fetchAllCategories } from '../actions';
 
 class Categories extends Component {
@@ -18,7 +19,7 @@ class Categories extends Component {
                     <div className="section-name-text">
                         {categories && categories.map((category) => 
                             <span>
-                                <a className="section-nav-link " href="#">{category.name}</a>
+                                <Link className="section-nav-link " to={category.name}>{category.name}</Link>
                                 {console.log(categories[categories.length -1])}
                                 { (category.name !== categories[categories.length -1].name) ? (
                                     <span>
