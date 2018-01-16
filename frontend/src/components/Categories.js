@@ -14,12 +14,23 @@ class Categories extends Component {
 
         return (
             <div>
-
                 <div className="content-container">
                     <div className="section-name-text">
-                        {console.log(categories)}
-                        {categories.map((category) => 
-                            <a className="section-nav-link " href="#">{category.name}</a>
+                        {categories && categories.map((category) => 
+                            <span>
+                                <a className="section-nav-link " href="#">{category.name}</a>
+                                {console.log(categories[categories.length -1])}
+                                { (category.name !== categories[categories.length -1].name) ? (
+                                    <span>
+                                        <span className="category-spacer-right">&nbsp;</span>
+                                        <span>·</span>
+                                        <span className="category-spacer-left">&nbsp;</span> 
+                                    </span>
+                                ) : (
+                                    <span></span>
+                                )
+                                }
+                            </span>
                         )}
                     </div>
                 </div>

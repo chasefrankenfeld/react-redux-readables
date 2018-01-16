@@ -135,6 +135,14 @@ a.no-ul {
   text-transform: uppercase;
 }
 
+.category-spacer-right {
+  margin-right: 3px;
+}
+
+.category-spacer-left {
+  margin-left: 3px;
+}
+
 /* Banner */
 
 .post-section.post-section-cta {

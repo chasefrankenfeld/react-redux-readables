@@ -15,8 +15,6 @@ class Posts extends Component {
 
     return (
       <div className="Posts">
-        {console.log(this.props.posts)}
-        {console.log(Object.keys(this.props.posts).map((data) => this.props.posts[data]))}
         <div className="content-container">
           <div className="section-name-text">
               <a className="section-nav-link active" href="/">Post Score</a>
@@ -24,10 +22,6 @@ class Posts extends Component {
               ·
               &nbsp;
               <a className="section-nav-link " href="#">New</a>
-              &nbsp;
-              ·
-              &nbsp;
-              <a className="section-nav-link " href="#">Categories</a>
           </div>
         </div>
         {posts.map(posts => posts.map((post) => 
