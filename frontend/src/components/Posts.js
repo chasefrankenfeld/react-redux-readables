@@ -6,9 +6,24 @@ import FaComment from 'react-icons/lib/fa/comment';
 
 class Posts extends Component {
 
+  state = {
+    sortByVoteScoreRank: false,
+    sortByTimestamp: false
+  }
+
   componentDidMount() {
       this.props.showAllPosts()
   };
+
+  sortByVoteScoreRank = () => this.setState({
+    sortByVoteScoreRank: true,
+    sortByTimestamp: false
+  })
+
+  sortByTimestamp = () => this.setState({
+    sortByTimestamp: true,
+    sortByVoteScoreRank: false
+  })
 
   render() {
 
@@ -17,16 +32,41 @@ class Posts extends Component {
       posts = posts.filter((post) => post.category === this.props.match.params.category )
     }
 
+    if ( this.state.sortByVoteScoreRank === true && posts ) {
+      const voteScoreRank = posts && posts.map((post) => post.voteScore).sort().reverse()
+      let sortedPostsByVoteScore = []
+      voteScoreRank.forEach((voteScore) => {
+        posts.forEach((postObj) => {
+          if ( voteScore === postObj.voteScore ) {
+            sortedPostsByVoteScore.push(postObj)
+          }
+        })
+      })
+      posts = sortedPostsByVoteScore
+    }
+
+    if ( this.state.sortByTimestamp && posts ) {
+      const timestampRank = posts && posts.map((post) => post.timestamp).sort().reverse()
+      let sortedPostsByTimestamp = []
+      timestampRank.forEach((timestamp) => {
+        posts.forEach((postObj) => {
+          if ( timestamp === postObj.timestamp ) {
+            sortedPostsByTimestamp.push(postObj)
+          }
+        })
+      })
+      posts = sortedPostsByTimestamp
+    }
+
     return (
       <div className="Posts">
-
         <div className="content-container">
           <div className="section-name-text">
-              <a className="section-nav-link active" href="/">Post Score</a>
+              <a className="section-nav-link sort" onClick={this.sortByVoteScoreRank}>Post Score</a>
               &nbsp;
               ·
               &nbsp;
-              <a className="section-nav-link " href="#">New</a>
+              <a className="section-nav-link sort" onClick={this.sortByTimestamp}>New</a>
           </div>
         </div>
         {posts && posts.map((post) => 
