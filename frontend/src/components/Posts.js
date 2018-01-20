@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import { fetchAllPosts } from '../actions';
 import FaComment from 'react-icons/lib/fa/comment';
 
@@ -11,10 +12,14 @@ class Posts extends Component {
 
   render() {
 
-    const posts = Object.keys(this.props.posts).map((data) => this.props.posts[data])
+    let { posts } = this.props.posts
+    if ( this.props.match.params.category && posts ) {
+      posts = posts.filter((post) => post.category === this.props.match.params.category )
+    }
 
     return (
       <div className="Posts">
+
         <div className="content-container">
           <div className="section-name-text">
               <a className="section-nav-link active" href="/">Post Score</a>
@@ -24,13 +29,12 @@ class Posts extends Component {
               <a className="section-nav-link " href="#">New</a>
           </div>
         </div>
-        {posts.map(posts => posts.map((post) => 
-            <div key="{post.id}" className="content-container post">            
+        {posts && posts.map((post) => 
+            <div key={post.id} className="content-container post">            
               <a className="post-background-link no-ul post-link" href="#"></a>
 
               <div className="post-title">
                   <a className="post-link" href="#">
-                      {console.log(post.title)}
                       {post.title}
                   </a>
               </div>
@@ -71,7 +75,7 @@ class Posts extends Component {
               </div>
 
             </div>
-        ))}
+          )}
       </div>
     );
   }
@@ -87,4 +91,4 @@ const mapDispatchToProps = (dispatch) => ({
   showAllPosts: () => dispatch(fetchAllPosts())
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(Posts);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Posts));

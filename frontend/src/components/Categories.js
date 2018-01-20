@@ -18,9 +18,8 @@ class Categories extends Component {
                 <div className="content-container">
                     <div className="section-name-text">
                         {categories && categories.map((category) => 
-                            <span>
+                            <span key={category.name}>
                                 <Link className="section-nav-link " to={category.name}>{category.name}</Link>
-                                {console.log(categories[categories.length -1])}
                                 { (category.name !== categories[categories.length -1].name) ? (
                                     <span>
                                         <span className="category-spacer-right">&nbsp;</span>
