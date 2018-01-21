@@ -10,7 +10,7 @@ const headers = {
   'Authorization': token
 }
 
-// Get home page posts
+// GET - home page posts
 
 export const fetchAllPosts = () => (
   fetch(`${API}/posts`, { headers })
@@ -18,7 +18,7 @@ export const fetchAllPosts = () => (
   .then(data => data)
 );
 
-// Get Categories
+// GET - Categories
 
 export const fetchAllCategories = () => (
   fetch(`${API}/categories`, { headers })
@@ -26,10 +26,27 @@ export const fetchAllCategories = () => (
   .then(data => data.categories)
 )
 
-// Get Category Posts
+// GET - Category Posts
 
 export const fetchCategoryPosts = (category) => (
   fetch(`${API}/${category}/posts`, { headers })
   .then(res => res.json())
   .then(data => data)
+)
+
+// POST - Post Votes
+
+export const postPostVote = (id, option) => (
+  fetch(`${API}/posts/${id}`, 
+    { 
+      method: "POST",
+      headers: {
+        ...headers,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        option
+      })
+    }
+  ).then(res => res.json())
 )

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { fetchAllPosts } from '../actions';
+import { fetchAllPosts, postUpVote } from '../actions';
 import FaComment from 'react-icons/lib/fa/comment';
 
 class Posts extends Component {
@@ -10,7 +10,6 @@ class Posts extends Component {
     sortByVoteScoreRank: false,
     sortByTimestamp: false
   }
-
   componentDidMount() {
       this.props.showAllPosts()
   };
@@ -24,6 +23,10 @@ class Posts extends Component {
     sortByTimestamp: true,
     sortByVoteScoreRank: false
   })
+
+  upVote = (id) => {
+    this.props.upVote(id)
+  }
 
   render() {
 
@@ -72,7 +75,6 @@ class Posts extends Component {
         {posts && posts.map((post) => 
             <div key={post.id} className="content-container post">            
               <a className="post-background-link no-ul post-link" href="#"></a>
-
               <div className="post-title">
                   <a className="post-link" href="#">
                       {post.title}
@@ -100,7 +102,7 @@ class Posts extends Component {
               <div className="post-actions">
 
                 <a className="post-link post-action-button">
-                    <i className="icon reaction-icon icon-light icon-upvote"></i>
+                    <i className="icon reaction-icon icon-light icon-upvote" onClick={this.upVote(post.id)}></i>
                 </a>
 
 
@@ -128,7 +130,8 @@ const mapStateToProps = ({posts}) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  showAllPosts: () => dispatch(fetchAllPosts())
+  showAllPosts: () => dispatch(fetchAllPosts()),
+  upVote: (id) => dispatch(postUpVote(id))
 })
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Posts));

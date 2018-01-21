@@ -3,6 +3,7 @@ import * as API from '../utils/api';
 export const GET_ALL_POSTS = 'GET_ALL_POSTS';
 export const GET_ALL_CATEGORIES = 'GET_ALL_CATEGORIES';
 export const GET_CATEGORY_POSTS = 'GET_CATEGORY_POSTS';
+export const POST_UP_VOTE = 'POST_UP_VOTE';
 
 // Get Posts
 
@@ -55,5 +56,18 @@ export const getCategoryPosts = (posts) => ({
     type: GET_CATEGORY_POSTS,
     posts
 });
+
+// Upvote Post
+
+export const postUpVote = (id) => dispatch => (
+    API.postPostVote(id, "upVote").then((post) => {
+        dispatch(upVote(post))
+    })
+);
+
+export const upVote = (post) => ({
+    type: POST_UP_VOTE,
+    post
+})
 
 

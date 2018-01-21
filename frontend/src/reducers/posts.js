@@ -1,4 +1,8 @@
-import { GET_ALL_POSTS, GET_CATEGORY_POSTS } from '../actions';
+import { 
+    GET_ALL_POSTS, 
+    GET_CATEGORY_POSTS, 
+    POST_UP_VOTE 
+    } from '../actions';
 
 const posts = (state = {}, action) => {
     const { posts } = action;
@@ -14,6 +18,9 @@ const posts = (state = {}, action) => {
                 ...state,
                 posts
             }
+        case POST_UP_VOTE:
+            return state.posts.map(post=>
+				(post.id === action.post.id) ? post = action.post : post)
         default:
             return state
     }
