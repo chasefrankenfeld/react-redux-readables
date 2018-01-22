@@ -19,8 +19,12 @@ const posts = (state = {}, action) => {
                 posts
             }
         case POST_UP_VOTE:
-            return state.posts.map(post=>
-				(post.id === action.post.id) ? post = action.post : post)
+            return {
+                ...state,
+                posts: state.posts.map((post) => 
+                    (post.id === action.post.id) ? action.post : post
+                )
+            }
         default:
             return state
     }

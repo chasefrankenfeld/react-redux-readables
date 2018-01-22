@@ -102,7 +102,7 @@ class Posts extends Component {
               <div className="post-actions">
 
                 <a className="post-link post-action-button">
-                    <i className="icon reaction-icon icon-light icon-upvote" onClick={this.upVote(post.id)}></i>
+                    <i className="icon reaction-icon icon-light icon-upvote" onClick={() => this.upVote(post.id)}></i>
                 </a>
 
 
