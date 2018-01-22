@@ -10,7 +10,7 @@ const headers = {
   'Authorization': token
 }
 
-// GET - home page posts
+// GET -  All posts
 
 export const fetchAllPosts = () => (
   fetch(`${API}/posts`, { headers })
@@ -30,6 +30,13 @@ export const fetchAllCategories = () => (
 
 export const fetchCategoryPosts = (category) => (
   fetch(`${API}/${category}/posts`, { headers })
+  .then(res => res.json())
+  .then(data => data)
+)
+
+// GET -  Single post
+export const fetchPost = (id) => (
+  fetch(`${API}/posts/${id}`, { headers })
   .then(res => res.json())
   .then(data => data)
 )

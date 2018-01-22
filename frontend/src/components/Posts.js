@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { fetchAllPosts, postUpVote, postDownVote } from '../actions';
 import FaComment from 'react-icons/lib/fa/comment';
 
@@ -39,6 +39,7 @@ class Posts extends Component {
       posts = posts.filter((post) => post.category === this.props.match.params.category )
     }
 
+    // This has an error where posts scores are equal
     if ( this.state.sortByVoteScoreRank === true && posts ) {
       const voteScoreRank = posts && posts.map((post) => post.voteScore).sort().reverse()
       let sortedPostsByVoteScore = []
@@ -52,6 +53,7 @@ class Posts extends Component {
       posts = sortedPostsByVoteScore
     }
 
+    // This has an error where posts timestamps are equal
     if ( this.state.sortByTimestamp && posts ) {
       const timestampRank = posts && posts.map((post) => post.timestamp).sort().reverse()
       let sortedPostsByTimestamp = []
@@ -73,16 +75,15 @@ class Posts extends Component {
               &nbsp;
               ·
               &nbsp;
-              <a className="section-nav-link sort" onClick={this.sortByTimestamp}>New</a>
+              <a className="section-nav-link sort" onClick={this.sortByTimestamp}>Newest Post</a>
           </div>
         </div>
         {posts && posts.map((post) => 
             <div key={post.id} className="content-container post">            
-              <a className="post-background-link no-ul post-link" href="#"></a>
               <div className="post-title">
-                  <a className="post-link" href="#">
+                  <Link to={"posts/" + post.id} className="post-link">
                       {post.title}
-                  </a>
+                  </Link>
               </div>
 
               <div className="info">
@@ -114,9 +115,9 @@ class Posts extends Component {
                     <i className="icon reaction-icon icon-light icon-downvote"></i>
                 </a>
 
-                <a className="post-link post-action-button post-action-button-margin no-ul" href="#">
+                <Link to={"posts/" + post.id} className="post-link post-action-button post-action-button-margin no-ul">
                     <FaComment className="icon-bubble"/>
-                </a>
+                </Link>
 
               </div>
 

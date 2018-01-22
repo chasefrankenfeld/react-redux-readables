@@ -4,6 +4,8 @@ export const GET_ALL_POSTS = 'GET_ALL_POSTS';
 export const GET_ALL_CATEGORIES = 'GET_ALL_CATEGORIES';
 export const GET_CATEGORY_POSTS = 'GET_CATEGORY_POSTS';
 export const POST_VOTE = 'POST_VOTE';
+export const POST = 'POST';
+
 
 // Get Posts
 
@@ -73,6 +75,19 @@ export const postDownVote = (id) => dispatch => (
 
 export const postVote = (post) => ({
     type: POST_VOTE,
+    post
+})
+
+// Get Post
+
+export const fetchPost = (id) => dispatch => (
+    API.postPostVote(id).then((post) => {
+        dispatch(getPost(post))
+    })
+);
+
+export const getPost = (post) => ({
+    type: POST,
     post
 })
 

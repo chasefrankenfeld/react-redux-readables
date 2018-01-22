@@ -3,6 +3,7 @@ import { Route } from 'react-router-dom';
 import Nav from './Nav';
 import Posts from './Posts';
 import Categories from './Categories';
+import PostDetail from './PostDetail';
 // import CategoryPosts from './CategoryPosts';
 
 class App extends Component {
@@ -20,6 +21,11 @@ class App extends Component {
           <div>
             <Categories />
             <Posts />
+          </div>
+        } />
+        <Route exact path='/posts/:id' render={() =>
+          <div>
+            <PostDetail />
           </div>
         } />
 
