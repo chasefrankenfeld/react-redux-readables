@@ -1,7 +1,7 @@
 import { 
     GET_ALL_POSTS, 
     GET_CATEGORY_POSTS, 
-    POST_UP_VOTE 
+    POST_VOTE 
     } from '../actions';
 
 const posts = (state = {}, action) => {
@@ -18,7 +18,7 @@ const posts = (state = {}, action) => {
                 ...state,
                 posts
             }
-        case POST_UP_VOTE:
+        case POST_VOTE:
             return {
                 ...state,
                 posts: state.posts.map((post) => 

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { fetchAllPosts, postUpVote } from '../actions';
+import { fetchAllPosts, postUpVote, postDownVote } from '../actions';
 import FaComment from 'react-icons/lib/fa/comment';
 
 class Posts extends Component {
@@ -26,6 +26,10 @@ class Posts extends Component {
 
   upVote = (id) => {
     this.props.upVote(id)
+  }
+
+  downVote = (id) => {
+    this.props.downVote(id)
   }
 
   render() {
@@ -101,12 +105,12 @@ class Posts extends Component {
 
               <div className="post-actions">
 
-                <a className="post-link post-action-button">
-                    <i className="icon reaction-icon icon-light icon-upvote" onClick={() => this.upVote(post.id)}></i>
+                <a className="post-link post-action-button" onClick={() => this.upVote(post.id)}>
+                    <i className="icon reaction-icon icon-light icon-upvote"></i>
                 </a>
 
 
-                <a className="post-link post-action-button post-action-button-margin">
+                <a className="post-link post-action-button post-action-button-margin" onClick={() => this.downVote(post.id)}>
                     <i className="icon reaction-icon icon-light icon-downvote"></i>
                 </a>
 
@@ -131,7 +135,8 @@ const mapStateToProps = ({posts}) => {
 
 const mapDispatchToProps = (dispatch) => ({
   showAllPosts: () => dispatch(fetchAllPosts()),
-  upVote: (id) => dispatch(postUpVote(id))
+  upVote: (id) => dispatch(postUpVote(id)),
+  downVote: (id) => dispatch(postDownVote(id))
 })
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Posts));
