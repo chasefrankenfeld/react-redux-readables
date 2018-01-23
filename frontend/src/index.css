@@ -146,7 +146,7 @@ a.no-ul {
 /* Banner */
 
 .post-section.post-section-cta {
-  background-color: #551a8b;
+  background-color: #8528db;
   color: #FFF;
 }
 
@@ -194,6 +194,24 @@ a.no-ul {
   color: #3a4a8c;
 }
 
+/* Comments section */
+
+.comments-section.comments-section-cta {
+  background-color: #fafafa;
+  color: #222;
+}
+
+.comments-section {
+  margin: 0px;
+  padding: 8px 0px;
+}
+
+.comments-title p {
+  color: #222222;
+  font-size: 16px;
+  text-decoration: none;
+  font-weight: bold;
+}
 
 /* Posts */
 
@@ -209,12 +227,16 @@ a.no-ul {
   z-index: 2;
 }
 
-.post-title a {
+.post-title {
   color: #222222;
   font-size: 16px;
-  text-decoration: none;
   font-weight: bold;
   padding-bottom: 1px;
+}
+
+.post-title a {
+  text-decoration: none;
+  color: #222222;
 }
 
 * {

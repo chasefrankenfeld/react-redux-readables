@@ -1,4 +1,4 @@
-import { POST } from '../actions';
+import { POST, POST_VOTE } from '../actions';
 
 
 const post = (state = {}, action) => {
@@ -10,6 +10,11 @@ const post = (state = {}, action) => {
                 ...state,
                 post
             }
+        case POST_VOTE:
+        return {
+            ...state,
+            post
+        }
         default:
             return state
     }
