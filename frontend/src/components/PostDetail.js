@@ -23,13 +23,10 @@ class PostDetails extends Component {
 
     return (
         <div className="Posts">
-            {console.log(post)}
             {post && 
             <div key={post.id} className="content-container post">            
                 <div className="post-title">
-                    <p className="post-link">
                         {post.title}
-                    </p>
                 </div>
 
                 <div className="info">
@@ -56,7 +53,6 @@ class PostDetails extends Component {
                         <i className="icon reaction-icon icon-light icon-upvote"></i>
                     </a>
 
-
                     <a className="post-link post-action-button post-action-button-margin" onClick={() => this.downVote(post.id)}>
                         <i className="icon reaction-icon icon-light icon-downvote"></i>
                     </a>
@@ -64,11 +60,6 @@ class PostDetails extends Component {
                 </div>
             </div>
             }
-            <div className="comments-section comments-section-cta">
-                <div className="content-container comments-title">
-                        <p>Comments</p>
-                </div>
-            </div>
         </div>
     );
   }

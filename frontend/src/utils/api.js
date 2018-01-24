@@ -57,3 +57,12 @@ export const postPostVote = (id, option) => (
     }
   ).then(res => res.json())
 )
+
+// GET - Post Comments
+
+// GET -  Single post
+export const fetchPostComments = (id) => (
+  fetch(`${API}/posts/${id}/comments`, { headers })
+  .then(res => res.json())
+  .then(data => data)
+)

@@ -5,6 +5,7 @@ export const GET_ALL_CATEGORIES = 'GET_ALL_CATEGORIES';
 export const GET_CATEGORY_POSTS = 'GET_CATEGORY_POSTS';
 export const POST_VOTE = 'POST_VOTE';
 export const POST = 'POST';
+export const COMMENTS = 'COMMENTS';
 
 
 // Get Posts
@@ -91,4 +92,15 @@ export const getPost = (post) => ({
     post
 })
 
+// Get Post Comments
 
+export const fetchPostComments = (id) => dispatch => (
+    API.fetchPostComments(id).then((comments) => {
+        dispatch(getPostComments(comments))
+    })
+)
+
+export const getPostComments = (comments) => ({
+    type: COMMENTS,
+    comments
+})

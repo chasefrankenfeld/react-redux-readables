@@ -4,6 +4,7 @@ import Nav from './Nav';
 import Posts from './Posts';
 import Categories from './Categories';
 import PostDetail from './PostDetail';
+import Comments from './Comments';
 // import CategoryPosts from './CategoryPosts';
 
 class App extends Component {
@@ -26,6 +27,7 @@ class App extends Component {
         <Route exact path='/posts/:id' render={() =>
           <div>
             <PostDetail />
+            <Comments />
           </div>
         } />
 

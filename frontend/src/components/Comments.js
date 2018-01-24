@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-// import { fetchPost, postUpVote, postDownVote } from '../actions';
+import { fetchPostComments } from '../actions';
 
 class Comments extends Component {
 
   componentDidMount() {
-    //   this.props.showPost(this.props.match.params.id)
+      this.props.showComments(this.props.match.params.id)
   };
 
 //   upVote = (id) => {
@@ -19,26 +19,75 @@ class Comments extends Component {
 
   render() {
 
-    let { post } = this.props.post
+    let { comments } = this.props.comments
 
     return (
-        <div className="Posts">
-            <div className="content-container post">            
-                
+        <div className="Comments">
+            <div className="comments-section comments-section-cta">
+                <div className="content-container comments-title">
+                    <p>Comments</p>
+                </div>
+            </div>
+            <div className="content-container post">
+                {console.log(comments)}  
+                {comments && comments.map((comment) =>
+
+                <div key={comment.id} className="StaticComment comment">
+                    
+                    <div className="comment-user">
+                        <span className="dark">
+                            {comment.author}
+                        </span>
+
+                        <span className="comment-time">
+                            &nbsp;·&nbsp;
+                            {comment.timestamp}
+                        </span>
+                        <span>
+                            &nbsp;
+                            |
+                            &nbsp;
+                        </span>
+                        <span className="comment-vote">
+                            Vote: {comment.voteScore}
+                        </span> 
+
+                    </div>
+
+                    <div className="comment-body">
+                        <p>{comment.body}</p>
+                    </div>
+
+                    <div className="info">
+                        <a className="comment-action-button">
+                            <i className="icon reaction-icon icon-light icon-upvote"></i>
+                        </a>
+                        <span>
+                            &nbsp;
+                            |
+                            &nbsp;
+                        </span>
+                        <a className="comment-action-button comment-action-button-margin">
+                            <i className="icon reaction-icon icon-light icon-downvote"></i>
+                        </a>
+                        
+                    </div>
+                 </div>
+                )}
             </div>
         </div>
     );
   }
 };
 
-const mapStateToProps = ({post}) => {
+const mapStateToProps = ({comments}) => {
   return {
-    post
+    comments
   }
 };
 
 const mapDispatchToProps = (dispatch) => ({
-//   showPost: (id) => dispatch(fetchPost(id)),
+  showComments: (id) => dispatch(fetchPostComments(id)),
 //   upVote: (id) => dispatch(postUpVote(id)),
 //   downVote: (id) => dispatch(postDownVote(id))
 })
