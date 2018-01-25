@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { fetchPostComments } from '../actions';
+import { fetchPostComments, commentUpVote, commentDownVote } from '../actions';
 
 class Comments extends Component {
 
@@ -9,13 +9,13 @@ class Comments extends Component {
       this.props.showComments(this.props.match.params.id)
   };
 
-//   upVote = (id) => {
-//     this.props.upVote(id)
-//   }
+  upVote = (id) => {
+    this.props.upVote(id)
+  }
 
-//   downVote = (id) => {
-//     this.props.downVote(id)
-//   }
+  downVote = (id) => {
+    this.props.downVote(id)
+  }
 
   render() {
 
@@ -29,11 +29,9 @@ class Comments extends Component {
                 </div>
             </div>
             <div className="content-container post">
-                {console.log(comments)}  
                 {comments && comments.map((comment) =>
 
                 <div key={comment.id} className="StaticComment comment">
-                    
                     <div className="comment-user">
                         <span className="dark">
                             {comment.author}
@@ -59,7 +57,7 @@ class Comments extends Component {
                     </div>
 
                     <div className="info">
-                        <a className="comment-action-button">
+                        <a className="comment-action-button" onClick={() => this.upVote(comment.id)}>
                             <i className="icon reaction-icon icon-light icon-upvote"></i>
                         </a>
                         <span>
@@ -67,7 +65,7 @@ class Comments extends Component {
                             |
                             &nbsp;
                         </span>
-                        <a className="comment-action-button comment-action-button-margin">
+                        <a className="comment-action-button comment-action-button-margin"onClick={() => this.downVote(comment.id)}>
                             <i className="icon reaction-icon icon-light icon-downvote"></i>
                         </a>
                         
@@ -88,8 +86,8 @@ const mapStateToProps = ({comments}) => {
 
 const mapDispatchToProps = (dispatch) => ({
   showComments: (id) => dispatch(fetchPostComments(id)),
-//   upVote: (id) => dispatch(postUpVote(id)),
-//   downVote: (id) => dispatch(postDownVote(id))
+  upVote: (id) => dispatch(commentUpVote(id)),
+  downVote: (id) => dispatch(commentDownVote(id))
 })
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Comments));

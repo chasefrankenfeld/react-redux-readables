@@ -1,4 +1,4 @@
-import { COMMENTS } from '../actions';
+import { COMMENTS, COMMENT_VOTE } from '../actions';
 
 const comments = (state = {}, action) => {
     const { comments } = action;
@@ -8,6 +8,13 @@ const comments = (state = {}, action) => {
             return {
                 ...state,
                 comments
+            }
+        case COMMENT_VOTE:
+            return {
+                ...state,
+                comments: state.comments.map((comment) => 
+                    comment.id === action.comment.id ? action.comment : comment
+                )
             }
         default:
             return state

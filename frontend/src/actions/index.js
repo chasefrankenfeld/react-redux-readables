@@ -6,6 +6,7 @@ export const GET_CATEGORY_POSTS = 'GET_CATEGORY_POSTS';
 export const POST_VOTE = 'POST_VOTE';
 export const POST = 'POST';
 export const COMMENTS = 'COMMENTS';
+export const COMMENT_VOTE = 'COMMENT_VOTE';
 
 
 // Get Posts
@@ -103,4 +104,23 @@ export const fetchPostComments = (id) => dispatch => (
 export const getPostComments = (comments) => ({
     type: COMMENTS,
     comments
+})
+
+// Comment Votes
+
+export const commentUpVote = (id) => dispatch => (
+    API.postCommentVote(id, "upVote").then((comment) => {
+        dispatch(commentVote(comment))
+    })
+);
+
+export const commentDownVote = (id) => dispatch => (
+    API.postCommentVote(id, "downVote").then((comment) => {
+        dispatch(commentVote(comment))
+    })
+);
+
+export const commentVote = (comment) => ({
+    type: COMMENT_VOTE,
+    comment
 })
