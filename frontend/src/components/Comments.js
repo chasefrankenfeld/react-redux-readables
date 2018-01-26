@@ -7,7 +7,8 @@ import {
     commentDownVote,
     newComment,
     fetchPost,
-    deleteComment 
+    deleteComment,
+    fetchEditComment
 } from '../actions';
 
 import * as API from '../utils/api';
@@ -15,8 +16,10 @@ import * as API from '../utils/api';
 class Comments extends Component {
 
     state = {
+        commentId: "",
         commentAuthor: "",
         commentInput: "",
+        editForm: false
     }
 
     componentDidMount() {
@@ -64,6 +67,30 @@ class Comments extends Component {
         }
     }
 
+    editComment = (comment) => {
+        this.setState({
+            commentId: comment.id,
+            commentAuthor: comment.author,
+            commentInput: comment.body,
+            editForm: true
+        })
+    }
+
+    postEditComment = () => {
+        this.props.editComment(
+            this.state.commentId,
+            Date.now(),
+            this.state.body
+        ).then(() =>
+        this.setState({
+            commentId: '',
+            commentAuthor: '',
+            commentInput: '',
+            editForm: false
+        }))
+
+    }
+
     deleteComment = (id) => {
         this.props.deleteComment(id)
     }
@@ -98,7 +125,11 @@ class Comments extends Component {
                 <div className="comment-button-align">
                     <button 
                         className="comment-button" 
-                        onClick={() => this.submitComment()}
+                        onClick={() => 
+                            this.state.editForm 
+                                ? this.postEditComment()
+                                : this.submitComment()
+                        }
                     >Comment</button>
                 </div>
             </div>
@@ -146,12 +177,21 @@ class Comments extends Component {
                             |
                             &nbsp;
                         </span>
+                        <a className="comment-action-delete" onClick={() => this.editComment(comment)}>
+                            &nbsp;
+                            Edit
+                            &nbsp;
+                        </a>
+                        <span>
+                            &nbsp;
+                            |
+                            &nbsp;
+                        </span>
                         <a className="comment-action-delete" onClick={() => this.deleteComment(comment.id)}>
                             &nbsp;
                             X
                             &nbsp;
                         </a>
-                        
                     </div>
                  </div>
                 )}
@@ -174,7 +214,8 @@ const mapDispatchToProps = (dispatch) => ({
   downVote: (id) => dispatch(commentDownVote(id)),
   newComment: (id, timestamp, body, author, parentId) => dispatch(newComment(id, timestamp, body, author, parentId)),
   showPost: (id) => dispatch(fetchPost(id)),
-  deleteComment: (id) => dispatch(deleteComment(id))
+  deleteComment: (id) => dispatch(deleteComment(id)),
+  editComment: (id, timestamp, body) => dispatch(fetchEditComment(id, timestamp, body))
 })
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Comments));

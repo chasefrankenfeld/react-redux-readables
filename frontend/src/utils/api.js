@@ -107,6 +107,24 @@ export const postComment = (id, timestamp, body, author, parentId) => (
   ).then(res => res.json())
 )
 
+// PUT - Edit Comment
+
+export const editComment = (id, timestamp, body) => (
+  fetch(`${API}/comments/${id}`, 
+    { 
+      method: "PUT",
+      headers: {
+        ...headers,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        timestamp, 
+        body
+      })
+    }
+  ).then(res => res.json())
+)
+
 // DELETE - Post Comment
 
 export const deleteComment = (id) => (

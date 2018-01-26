@@ -1,8 +1,15 @@
-import { POST, POST_VOTE, DELETED_COMMENT } from '../actions';
+import { 
+    POST, 
+    POST_VOTE, 
+    // DELETED_COMMENT 
+} from '../actions';
 
 
 const post = (state = {}, action) => {
-    const { post, postCommentCount } = action;
+    const { 
+        post, 
+        // postCommentCount
+    } = action;
 
     switch(action.type) {
         case POST:

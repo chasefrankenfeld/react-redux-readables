@@ -2,7 +2,8 @@ import {
     COMMENTS, 
     COMMENT_VOTE, 
     NEW_POST_COMMENT,
-    DELETED_COMMENT
+    DELETED_COMMENT,
+    EDIT_COMMENT
 } from '../actions';
 
 const comments = (state = {}, action) => {
@@ -22,6 +23,11 @@ const comments = (state = {}, action) => {
                 )
             }
         case NEW_POST_COMMENT:
+            return {
+                ...state,
+                comment
+            }
+        case EDIT_COMMENT:
             return {
                 ...state,
                 comment
