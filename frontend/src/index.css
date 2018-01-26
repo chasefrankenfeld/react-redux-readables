@@ -401,6 +401,10 @@ a.no-ul {
   background-color: #8528db;
 }
 
+.comment-action-delete {
+ font-weight: 450;
+}
+
 
 /* Footer */
 

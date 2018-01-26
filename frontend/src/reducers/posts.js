@@ -5,7 +5,7 @@ import {
     } from '../actions';
 
 const posts = (state = {}, action) => {
-    const { posts } = action;
+    const { posts, post } = action;
 
     switch(action.type) {
         case GET_ALL_POSTS:
@@ -21,8 +21,8 @@ const posts = (state = {}, action) => {
         case POST_VOTE:
             return {
                 ...state,
-                posts: state.posts.map((post) => 
-                    (post.id === action.post.id) ? action.post : post
+                posts: state.posts.map((oldPost) => 
+                    (oldPost.id === post.id) ? post : oldPost
                 )
             }
         default:

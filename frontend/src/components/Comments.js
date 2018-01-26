@@ -6,18 +6,22 @@ import {
     commentUpVote, 
     commentDownVote,
     newComment,
-    fetchPost 
+    fetchPost,
+    deleteComment 
 } from '../actions';
+
+import * as API from '../utils/api';
 
 class Comments extends Component {
 
     state = {
         commentAuthor: "",
-        commentInput: ""
+        commentInput: "",
     }
 
     componentDidMount() {
         this.props.showComments(this.props.match.params.id)
+        this.props.showPost(this.props.match.params.id)
     };
 
     upVote = (id) => {
@@ -53,9 +57,15 @@ class Comments extends Component {
                 commentAuthor: "",
                 commentInput: ""
             }))
-            .then(() => this.props.showComments(this.props.match.params.id))
-            .then(() => this.props.showPost(this.props.match.params.id))
+            .then(() => 
+                this.props.showComments(this.props.match.params.id) &&
+                this.props.showPost(this.props.match.params.id)
+            )
         }
+    }
+
+    deleteComment = (id) => {
+        this.props.deleteComment(id)
     }
 
     render() {
@@ -94,7 +104,6 @@ class Comments extends Component {
             </div>
             <div className="content-container post">
                 {comments && comments.map((comment) =>
-
                 <div key={comment.id} className="StaticComment comment">
                     <div className="comment-user">
                         <span className="dark">
@@ -132,6 +141,16 @@ class Comments extends Component {
                         <a className="comment-action-button comment-action-button-margin"onClick={() => this.downVote(comment.id)}>
                             <i className="icon reaction-icon icon-light icon-downvote"></i>
                         </a>
+                        <span>
+                            &nbsp;
+                            |
+                            &nbsp;
+                        </span>
+                        <a className="comment-action-delete" onClick={() => this.deleteComment(comment.id)}>
+                            &nbsp;
+                            X
+                            &nbsp;
+                        </a>
                         
                     </div>
                  </div>
@@ -142,9 +161,10 @@ class Comments extends Component {
   }
 };
 
-const mapStateToProps = ({comments}) => {
+const mapStateToProps = ({comments, post}) => {
   return {
-    comments
+    comments,
+    post
   }
 };
 
@@ -154,6 +174,7 @@ const mapDispatchToProps = (dispatch) => ({
   downVote: (id) => dispatch(commentDownVote(id)),
   newComment: (id, timestamp, body, author, parentId) => dispatch(newComment(id, timestamp, body, author, parentId)),
   showPost: (id) => dispatch(fetchPost(id)),
+  deleteComment: (id) => dispatch(deleteComment(id))
 })
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Comments));

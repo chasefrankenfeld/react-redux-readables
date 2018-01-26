@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { fetchPost, postUpVote, postDownVote } from '../actions';
+import { fetchPost, postUpVote, postDownVote, fetchAllPosts } from '../actions';
 
 class PostDetails extends Component {
 
   componentDidMount() {
       this.props.showPost(this.props.match.params.id)
+      this.props.showAllPosts()
   };
 
   upVote = (id) => {
@@ -72,9 +73,10 @@ const mapStateToProps = ({post}) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  showPost: (id) => dispatch(fetchPost(id)),
-  upVote: (id) => dispatch(postUpVote(id)),
-  downVote: (id) => dispatch(postDownVote(id))
+    showAllPosts: () => dispatch(fetchAllPosts()),
+    showPost: (id) => dispatch(fetchPost(id)),
+    upVote: (id) => dispatch(postUpVote(id)),
+    downVote: (id) => dispatch(postDownVote(id))
 })
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(PostDetails));

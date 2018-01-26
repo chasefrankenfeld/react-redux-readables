@@ -106,3 +106,14 @@ export const postComment = (id, timestamp, body, author, parentId) => (
     }
   ).then(res => res.json())
 )
+
+// DELETE - Post Comment
+
+export const deleteComment = (id) => (
+  fetch(`${API}/comments/${id}`, 
+    { 
+      method: "DELETE",
+      headers
+    }
+  ).then(res => res.json())
+)

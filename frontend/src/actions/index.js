@@ -8,6 +8,7 @@ export const POST = 'POST';
 export const COMMENTS = 'COMMENTS';
 export const COMMENT_VOTE = 'COMMENT_VOTE';
 export const NEW_POST_COMMENT = 'NEW_POST_COMMENT';
+export const DELETED_COMMENT = 'DELETED_COMMENT';
 
 
 // Get Posts
@@ -136,5 +137,18 @@ export const newComment = (id, timestamp, body, author, parentId) => dispatch =>
 
 export const newPostComment = (comment) => ({
     type: NEW_POST_COMMENT,
+    comment
+})
+
+// Delete comment
+
+export const deleteComment = (id) => dispatch => (
+    API.postComment(id).then((comment) => {
+        dispatch(deletedComment(comment))
+    })
+);
+
+export const deletedComment = (comment) => ({
+    type: DELETED_COMMENT,
     comment
 })

@@ -1,7 +1,8 @@
 import { 
     COMMENTS, 
     COMMENT_VOTE, 
-    NEW_POST_COMMENT 
+    NEW_POST_COMMENT,
+    DELETED_COMMENT
 } from '../actions';
 
 const comments = (state = {}, action) => {
@@ -24,6 +25,11 @@ const comments = (state = {}, action) => {
             return {
                 ...state,
                 comment
+            }
+        case DELETED_COMMENT:
+            return {
+                ...state,
+                comments: state.comments.filter((oldComment) => oldComment.id !== comment.id)
             }
         default:
             return state
