@@ -29,6 +29,17 @@ class Comments extends Component {
                 </div>
             </div>
             <div className="content-container post">
+                <div>
+                    <textarea 
+                        className="comment-text-area"
+                        placeholder="Share your thoughts..."
+                    ></textarea>
+                </div>
+                <div className="comment-button-align">
+                    <button className="comment-button">Comment</button>
+                </div>
+            </div>
+            <div className="content-container post">
                 {comments && comments.map((comment) =>
 
                 <div key={comment.id} className="StaticComment comment">

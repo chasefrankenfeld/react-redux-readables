@@ -365,6 +365,38 @@ a.no-ul {
   margin-left: 3px;
 }
 
+.comment-text-area {
+  width: 100%;
+  margin: 0px 0px 2px 0px;
+  padding: 6px 8px;
+  max-height: 240px;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+.comment-text-area:focus {
+  outline: none;
+}
+
+.comment-button-align {
+  text-align: right;
+}
+
+.comment-button {
+  color: #8528db;
+  border: 1px solid #8528db;
+  font-size: 13px;
+  padding: 4px 12px;
+  margin: 2px 0px;
+}
+
+.comment-button:hover {
+  color: #fff;
+  background-color: #8528db;
+}
+
+
 /* Footer */
 
 .footer {
