@@ -60,7 +60,9 @@ export const postPostVote = (id, option) => (
 
 // GET - Post Comments
 
-// GET -  Single post
+// COMMMENTS
+
+// GET -  Single Comment
 export const fetchPostComments = (id) => (
   fetch(`${API}/posts/${id}/comments`, { headers })
   .then(res => res.json())
@@ -79,6 +81,27 @@ export const postCommentVote = (id, option) => (
       },
       body: JSON.stringify({
         option
+      })
+    }
+  ).then(res => res.json())
+)
+
+// POST - Post Comment
+
+export const postComment = (id, timestamp, body, author, parentId) => (
+  fetch(`${API}/comments`, 
+    { 
+      method: "POST",
+      headers: {
+        ...headers,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        id, 
+        timestamp, 
+        body, 
+        author, 
+        parentId
       })
     }
   ).then(res => res.json())

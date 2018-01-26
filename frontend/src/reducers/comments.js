@@ -1,7 +1,11 @@
-import { COMMENTS, COMMENT_VOTE } from '../actions';
+import { 
+    COMMENTS, 
+    COMMENT_VOTE, 
+    NEW_POST_COMMENT 
+} from '../actions';
 
 const comments = (state = {}, action) => {
-    const { comments } = action;
+    const { comments, comment } = action;
 
     switch(action.type) {
         case COMMENTS:
@@ -12,9 +16,14 @@ const comments = (state = {}, action) => {
         case COMMENT_VOTE:
             return {
                 ...state,
-                comments: state.comments.map((comment) => 
-                    comment.id === action.comment.id ? action.comment : comment
+                comments: state.comments.map((oldComment) => 
+                oldComment.id === comment.id ? comment : oldComment
                 )
+            }
+        case NEW_POST_COMMENT:
+            return {
+                ...state,
+                comment
             }
         default:
             return state

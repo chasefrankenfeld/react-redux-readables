@@ -1,23 +1,64 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { fetchPostComments, commentUpVote, commentDownVote } from '../actions';
+import { 
+    fetchPostComments, 
+    commentUpVote, 
+    commentDownVote,
+    newComment,
+    fetchPost 
+} from '../actions';
 
 class Comments extends Component {
 
-  componentDidMount() {
-      this.props.showComments(this.props.match.params.id)
-  };
+    state = {
+        commentAuthor: "",
+        commentInput: ""
+    }
 
-  upVote = (id) => {
-    this.props.upVote(id)
-  }
+    componentDidMount() {
+        this.props.showComments(this.props.match.params.id)
+    };
 
-  downVote = (id) => {
-    this.props.downVote(id)
-  }
+    upVote = (id) => {
+        this.props.upVote(id)
+    }
 
-  render() {
+    downVote = (id) => {
+        this.props.downVote(id)
+    }
+
+    handleCommentAuthor = (event) => {
+        this.setState({
+            commentAuthor: event.target.value
+        })
+    }
+
+    handleCommentInput = (event) => {
+        this.setState({
+            commentInput: event.target.value
+        })
+    }
+
+    submitComment = () => {
+        if (this.state.commentAuthor !== '' && this.state.commentInput !== '') {
+            this.props.newComment(
+                Math.floor((Math.random() * 100000000000) + 1),
+                Date.now(),
+                this.state.commentInput,
+                this.state.commentAuthor,
+                this.props.match.params.id
+            )
+            .then(() => this.setState({
+                commentAuthor: "",
+                commentInput: ""
+            }))
+            .then(() => this.props.showComments(this.props.match.params.id))
+            .then(() => this.props.showPost(this.props.match.params.id))
+        }
+    }
+
+    render() {
 
     let { comments } = this.props.comments
 
@@ -29,14 +70,26 @@ class Comments extends Component {
                 </div>
             </div>
             <div className="content-container post">
-                <div>
+                <form>
+                    <input
+                        type="text"
+                        className="comment-text-area comment-author"
+                        placeholder="Name"
+                        value={this.state.commentAuthor}
+                        onChange={this.handleCommentAuthor}
+                    />
                     <textarea 
                         className="comment-text-area"
                         placeholder="Share your thoughts..."
-                    ></textarea>
-                </div>
+                        value={this.state.commentInput}
+                        onChange={this.handleCommentInput}
+                    />
+                </form>
                 <div className="comment-button-align">
-                    <button className="comment-button">Comment</button>
+                    <button 
+                        className="comment-button" 
+                        onClick={() => this.submitComment()}
+                    >Comment</button>
                 </div>
             </div>
             <div className="content-container post">
@@ -98,7 +151,9 @@ const mapStateToProps = ({comments}) => {
 const mapDispatchToProps = (dispatch) => ({
   showComments: (id) => dispatch(fetchPostComments(id)),
   upVote: (id) => dispatch(commentUpVote(id)),
-  downVote: (id) => dispatch(commentDownVote(id))
+  downVote: (id) => dispatch(commentDownVote(id)),
+  newComment: (id, timestamp, body, author, parentId) => dispatch(newComment(id, timestamp, body, author, parentId)),
+  showPost: (id) => dispatch(fetchPost(id)),
 })
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Comments));

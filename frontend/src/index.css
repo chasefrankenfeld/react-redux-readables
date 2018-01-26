@@ -366,17 +366,22 @@ a.no-ul {
 }
 
 .comment-text-area {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   width: 100%;
   margin: 0px 0px 2px 0px;
   padding: 6px 8px;
   max-height: 240px;
-  font-family: inherit;
   font-size: inherit;
   line-height: inherit;
+  border-color: none;
 }
 
 .comment-text-area:focus {
   outline: none;
+}
+
+.comment-author {
+  border-width: 1px;
 }
 
 .comment-button-align {

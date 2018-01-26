@@ -7,6 +7,7 @@ export const POST_VOTE = 'POST_VOTE';
 export const POST = 'POST';
 export const COMMENTS = 'COMMENTS';
 export const COMMENT_VOTE = 'COMMENT_VOTE';
+export const NEW_POST_COMMENT = 'NEW_POST_COMMENT';
 
 
 // Get Posts
@@ -122,5 +123,18 @@ export const commentDownVote = (id) => dispatch => (
 
 export const commentVote = (comment) => ({
     type: COMMENT_VOTE,
+    comment
+})
+
+// New post comment
+
+export const newComment = (id, timestamp, body, author, parentId) => dispatch => (
+    API.postComment(id, timestamp, body, author, parentId).then((comment) => {
+        dispatch(newPostComment(comment))
+    })
+);
+
+export const newPostComment = (comment) => ({
+    type: NEW_POST_COMMENT,
     comment
 })
