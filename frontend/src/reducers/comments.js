@@ -30,7 +30,9 @@ const comments = (state = {}, action) => {
         case EDIT_COMMENT:
             return {
                 ...state,
-                comment
+                comments: state.comments.map((oldComment) => 
+                oldComment.id === comment.id ? comment : oldComment
+                )
             }
         case DELETED_COMMENT:
             return {

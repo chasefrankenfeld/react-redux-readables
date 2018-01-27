@@ -80,7 +80,7 @@ class Comments extends Component {
         this.props.editComment(
             this.state.commentId,
             Date.now(),
-            this.state.body
+            this.state.commentInput
         ).then(() =>
         this.setState({
             commentId: '',
