@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
-import { fetchAllPosts, postUpVote, postDownVote } from '../actions';
+import { fetchAllPosts, newPost, postUpVote, postDownVote } from '../actions';
 import FaComment from 'react-icons/lib/fa/comment';
 
 class Posts extends Component {
@@ -63,7 +63,24 @@ class Posts extends Component {
   }
 
   submitNewPost = () => {
-    console.log("Yayyyy")
+    if (this.state.postAuthor 
+        && this.state.postTitle 
+        && this.state.postText 
+        && this.state.postCategoryValue) {
+          this.props.newPost(
+            Math.floor((Math.random() * 100000000000) + 1),
+            Date.now(),
+            this.state.postTitle,
+            this.state.postText,
+            this.state.postAuthor,
+            this.state.postCategoryValue
+          ).then(() => this.setState({
+            postTitle: "",
+            postText: "",
+            postAuthor: "",
+            postCategoryValue: ""
+          })).then(() => this.props.showAllPosts())
+        }
   }
 
   render() {
@@ -205,6 +222,10 @@ class Posts extends Component {
                     <FaComment className="icon-bubble"/>
                 </Link>
 
+                <a className="post-link post-action-button post-action-button-margin">
+                  Edit
+                </a>
+
               </div>
 
             </div>
@@ -223,6 +244,8 @@ const mapStateToProps = ({posts, categories}) => {
 
 const mapDispatchToProps = (dispatch) => ({
   showAllPosts: () => dispatch(fetchAllPosts()),
+  newPost: (id, timestamp, title, body, author, category) => 
+    dispatch(newPost(id, timestamp, title, body, author, category)),
   upVote: (id) => dispatch(postUpVote(id)),
   downVote: (id) => dispatch(postDownVote(id))
 })
