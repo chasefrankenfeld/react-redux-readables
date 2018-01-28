@@ -10,13 +10,7 @@ const headers = {
   'Authorization': token
 }
 
-// GET -  All posts
-
-export const fetchAllPosts = () => (
-  fetch(`${API}/posts`, { headers })
-  .then(res => res.json())
-  .then(data => data)
-);
+// CATEGORIES
 
 // GET - Categories
 
@@ -34,11 +28,43 @@ export const fetchCategoryPosts = (category) => (
   .then(data => data)
 )
 
+// POSTS
+
+// GET -  All posts
+
+export const fetchAllPosts = () => (
+  fetch(`${API}/posts`, { headers })
+  .then(res => res.json())
+  .then(data => data)
+);
+
 // GET -  Single post
 export const fetchPost = (id) => (
   fetch(`${API}/posts/${id}`, { headers })
   .then(res => res.json())
   .then(data => data)
+)
+
+// POST - New Post
+
+export const postPost = (id, timestamp, title, body, author, category) => (
+  fetch(`${API}/posts`, 
+    { 
+      method: "POST",
+      headers: {
+        ...headers,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        id, 
+        timestamp, 
+        title, 
+        body, 
+        author, 
+        category
+      })
+    }
+  ).then(res => res.json())
 )
 
 // POST - Post Votes
@@ -58,11 +84,10 @@ export const postPostVote = (id, option) => (
   ).then(res => res.json())
 )
 
-// GET - Post Comments
 
 // COMMMENTS
 
-// GET -  Single Comment
+// GET -  POST CommentS
 export const fetchPostComments = (id) => (
   fetch(`${API}/posts/${id}/comments`, { headers })
   .then(res => res.json())

@@ -255,7 +255,7 @@ a.no-ul {
 .post-form {
   font-family: inherit;
   font-size: inherit;
-  margin: 0px 0px 2px 0px;
+  margin: 5px 0px 2px 0px;
   padding: 6px 8px;
 }
 
@@ -449,7 +449,7 @@ option:checked {
 .comment-text-area {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   width: 100%;
-  margin: 0px 0px 2px 0px;
+  margin: 5px 0px 2px 0px;
   padding: 6px 8px;
   max-height: 240px;
   font-size: inherit;
