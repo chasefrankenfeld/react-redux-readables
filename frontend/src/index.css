@@ -213,12 +213,7 @@ a.no-ul {
   font-weight: bold;
 }
 
-
-
-
-
 /* Posts */
-
 
 .post {
   position: relative;
@@ -258,18 +253,17 @@ a.no-ul {
 }
 
 .post-form {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: inherit;
+  font-size: inherit;
   margin: 0px 0px 2px 0px;
   padding: 6px 8px;
-  max-height: 240px;
-  font-size: inherit;
-  line-height: inherit;
-  border-color: none;
 }
 
 .post-form-author {
   border-width: 1px;
   width: 100%;
+  border-bottom-color: #888;
+  border-right-color: #888;
 }
 
 .post-form-author:focus {
@@ -279,6 +273,8 @@ a.no-ul {
 .post-form-title {
   border-width: 1px;
   width: 100%;
+  border-bottom-color: #888;
+  border-right-color: #888;
 }
 
 .post-form-title:focus {
@@ -286,21 +282,20 @@ a.no-ul {
 }
 
 .post-form-categories {
-  font-size: inherit;
-  font-family: inherit;
   background-color: #FFF;
   -webkit-appearance: none;
   border-radius: 0px;
-  padding: 6px 8px;
-  margin: 0px 0px 2px 0px;
+
+  color: #888;
 }
 
 .post-form-categories:focus {
   outline: none;
+  color: #222;
 }
 
-selected[data-default] .default-category {
-  color: #888 important!;
+option:checked {
+  color: #222;
 }
 
 .post-form-text-area {
@@ -468,6 +463,8 @@ selected[data-default] .default-category {
 
 .comment-author {
   border-width: 1px;
+  border-bottom-color: #888;
+  border-right-color: #888;
 }
 
 .comment-button-align {

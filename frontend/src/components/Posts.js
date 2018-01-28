@@ -8,8 +8,10 @@ class Posts extends Component {
 
   state = {
     sortByVoteScoreRank: false,
-    sortByTimestamp: false
+    sortByTimestamp: false,
+    categoryValue: ""
   }
+
   componentDidMount() {
       this.props.showAllPosts()
   };
@@ -32,12 +34,20 @@ class Posts extends Component {
     this.props.downVote(id)
   }
 
+  changeCategory = (event) => {
+    this.setState({
+      categoryValue: event.target.value
+    })
+  }
+
   render() {
 
     let { posts } = this.props.posts
     if ( this.props.match.params.category && posts ) {
       posts = posts.filter((post) => post.category === this.props.match.params.category )
     }
+
+    let { categories } = this.props.categories
 
     // This has an error where posts scores are equal
     if ( this.state.sortByVoteScoreRank === true && posts ) {
@@ -101,13 +111,14 @@ class Posts extends Component {
                 />
               </div>
               <select 
-                className="post-form-categories"
-                // value={this.state.commentInput}
-                // onChange={this.handleCommentInput}
+                className="post-form post-form-categories"
+                value={this.state.categoryValue}
+                onChange={this.changeCategory}
               >
-                <option value="" selected data-default className="default-category">Select a category</option>
-                <option>That category</option>
-                <option>Roarrrr</option>
+                <option value="" selected>Select a category</option>
+                {categories && categories.map((category) => 
+                  <option value={category.name} key={category.name}>{category.name}</option>
+                )}
               </select>
             </div>
             <textarea 
@@ -179,9 +190,10 @@ class Posts extends Component {
   }
 };
 
-const mapStateToProps = ({posts}) => {
+const mapStateToProps = ({posts, categories}) => {
   return {
-    posts
+    posts,
+    categories
   }
 };
 
