@@ -78,6 +78,57 @@ class Posts extends Component {
               <a className="section-nav-link sort" onClick={this.sortByTimestamp}>Newest Post</a>
           </div>
         </div>
+
+        <div className="content-container post">
+          <form>
+            <div className="post-form-grid">
+              <div>
+                <input
+                  type="text"
+                  className="post-form post-form-author"
+                  placeholder="Name"
+                  // value={this.state.commentAuthor}
+                  // onChange={this.handleCommentAuthor}
+                />
+              </div>
+              <div>
+                <input
+                  type="text"
+                  className="post-form post-form-title"
+                  placeholder="Title"
+                  // value={this.state.commentAuthor}
+                  // onChange={this.handleCommentAuthor}
+                />
+              </div>
+              <select 
+                className="post-form-categories"
+                // value={this.state.commentInput}
+                // onChange={this.handleCommentInput}
+              >
+                <option value="" selected data-default className="default-category">Select a category</option>
+                <option>That category</option>
+                <option>Roarrrr</option>
+              </select>
+            </div>
+            <textarea 
+              className="post-form post-form-text-area"
+              placeholder="Share your thoughts..."
+              // value={this.state.commentInput}
+              // onChange={this.handleCommentInput}
+            />
+          </form>
+          <div className="post-form-button-align">
+            <button 
+              className="post-form-button" 
+              // onClick={() => 
+              //     this.state.editForm 
+              //         ? this.postEditComment()
+              //         : this.submitComment()
+              // }
+            >Comment</button>
+          </div>
+        </div>
+
         {posts && posts.map((post) => 
             <div key={post.id} className="content-container post">            
               <div className="post-title">

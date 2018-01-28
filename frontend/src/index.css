@@ -213,6 +213,10 @@ a.no-ul {
   font-weight: bold;
 }
 
+
+
+
+
 /* Posts */
 
 
@@ -242,6 +246,88 @@ a.no-ul {
 * {
   box-sizing: border-box;
 }
+
+/* New Posts */
+
+.post-form-grid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: auto auto auto;
+  justify-content: stretch;
+  grid-column-gap: 6px;
+}
+
+.post-form {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  margin: 0px 0px 2px 0px;
+  padding: 6px 8px;
+  max-height: 240px;
+  font-size: inherit;
+  line-height: inherit;
+  border-color: none;
+}
+
+.post-form-author {
+  border-width: 1px;
+  width: 100%;
+}
+
+.post-form-author:focus {
+  outline: none;
+}
+
+.post-form-title {
+  border-width: 1px;
+  width: 100%;
+}
+
+.post-form-title:focus {
+  outline: none;
+}
+
+.post-form-categories {
+  font-size: inherit;
+  font-family: inherit;
+  background-color: #FFF;
+  -webkit-appearance: none;
+  border-radius: 0px;
+  padding: 6px 8px;
+  margin: 0px 0px 2px 0px;
+}
+
+.post-form-categories:focus {
+  outline: none;
+}
+
+selected[data-default] .default-category {
+  color: #888 important!;
+}
+
+.post-form-text-area {
+  width: 100%;
+}
+
+.post-form-text-area:focus {
+  outline: none;
+}
+
+.post-form-button-align {
+  text-align: right;
+}
+
+.post-form-button {
+  color: #8528db;
+  border: 1px solid #8528db;
+  font-size: 13px;
+  padding: 4px 12px;
+  margin: 2px 0px;
+}
+
+.post-form-button:hover {
+  color: #fff;
+  background-color: #8528db;
+}
+
 
 /* Book Information */
 
