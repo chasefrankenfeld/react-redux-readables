@@ -9,7 +9,11 @@ class Posts extends Component {
   state = {
     sortByVoteScoreRank: false,
     sortByTimestamp: false,
-    categoryValue: ""
+    postAuthor: "",
+    postTitle: "",
+    postText: "",
+    postCategoryValue: "",
+    editForm: false
   }
 
   componentDidMount() {
@@ -34,10 +38,32 @@ class Posts extends Component {
     this.props.downVote(id)
   }
 
-  changeCategory = (event) => {
+  handlePostAuthor = (event) => {
     this.setState({
-      categoryValue: event.target.value
+      postAuthor: event.target.value
     })
+  }
+
+  handlePostTitle = (event) => {
+    this.setState({
+      postTitle: event.target.value
+    })
+  }
+
+  handlePostText = (event) => {
+    this.setState({
+      postText: event.target.value
+    })
+  }
+
+  handlePostCategory = (event) => {
+    this.setState({
+      postCategoryValue: event.target.value
+    })
+  }
+
+  submitNewPost = () => {
+    console.log("Yayyyy")
   }
 
   render() {
@@ -97,8 +123,8 @@ class Posts extends Component {
                   type="text"
                   className="post-form post-form-author"
                   placeholder="Name"
-                  // value={this.state.commentAuthor}
-                  // onChange={this.handleCommentAuthor}
+                  value={this.state.postAuthor}
+                  onChange={this.handlePostAuthor}
                 />
               </div>
               <div>
@@ -106,16 +132,16 @@ class Posts extends Component {
                   type="text"
                   className="post-form post-form-title"
                   placeholder="Title"
-                  // value={this.state.commentAuthor}
-                  // onChange={this.handleCommentAuthor}
+                  value={this.state.postTitle}
+                  onChange={this.handlePostTitle}
                 />
               </div>
               <select 
                 className="post-form post-form-categories"
-                value={this.state.categoryValue}
-                onChange={this.changeCategory}
+                value={this.state.postCategoryValue}
+                onChange={this.handlePostCategory}
               >
-                <option value="" selected>Select a category</option>
+                <option value="">Select a category</option>
                 {categories && categories.map((category) => 
                   <option value={category.name} key={category.name}>{category.name}</option>
                 )}
@@ -124,18 +150,16 @@ class Posts extends Component {
             <textarea 
               className="post-form post-form-text-area"
               placeholder="Share your thoughts..."
-              // value={this.state.commentInput}
-              // onChange={this.handleCommentInput}
+              value={this.state.postText}
+              onChange={this.handlePostText}
             />
           </form>
           <div className="post-form-button-align">
             <button 
               className="post-form-button" 
-              // onClick={() => 
-              //     this.state.editForm 
-              //         ? this.postEditComment()
-              //         : this.submitComment()
-              // }
+              onClick={() => 
+                this.submitNewPost()
+              }
             >Comment</button>
           </div>
         </div>

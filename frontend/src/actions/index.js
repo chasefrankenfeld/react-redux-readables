@@ -158,7 +158,6 @@ export const deletedComment = (comment) => ({
 
 export const fetchEditComment = (id, timestamp, body) => dispatch => (
     API.editComment(id, timestamp, body).then((comment) => {
-        console.log(comment)
         dispatch(editComment(comment))
     })
 );

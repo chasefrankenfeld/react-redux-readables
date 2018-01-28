@@ -11,8 +11,6 @@ import {
     fetchEditComment
 } from '../actions';
 
-import * as API from '../utils/api';
-
 class Comments extends Component {
 
     state = {

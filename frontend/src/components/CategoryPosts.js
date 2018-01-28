@@ -30,15 +30,12 @@ class CategoryPosts extends Component {
 
                 {posts && posts.map((post) => {
                     <div className="content-container post">
-                        {console.log(post)}            
                         <p>{post.title}</p>
                         <div key={post.id} className="content-container post">            
                             <a className="post-background-link no-ul post-link" href="#"></a>
 
                             <div className="post-title">
                                 <a className="post-link" href="#">
-                                {console.log(post.title)}            
-
                                     {post.title}
                                 </a>
                             </div>
