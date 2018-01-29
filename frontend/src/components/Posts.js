@@ -262,10 +262,6 @@ class Posts extends Component {
                     <i className="icon reaction-icon icon-light icon-downvote"></i>
                 </a>
 
-                <Link to={"posts/" + post.id} className="post-link post-action-button post-action-button-margin no-ul">
-                    <FaComment className="icon-bubble"/>
-                </Link>
-
                 <a className="post-link post-action-button post-action-button-margin" onClick={() => this.editPost(post)}>
                   Edit
                 </a>
@@ -273,6 +269,10 @@ class Posts extends Component {
                 <a className="post-link post-action-button post-action-button-margin" onClick={() => this.deletePost(post.id)}>
                   X
                 </a>
+
+                <Link to={"posts/" + post.id} className="post-link post-action-button post-action-button-margin no-ul">
+                    <FaComment className="icon-bubble"/>
+                </Link>
 
               </div>
 
