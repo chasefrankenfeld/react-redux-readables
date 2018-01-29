@@ -7,7 +7,7 @@ import {
     commentDownVote,
     newComment,
     fetchPost,
-    deleteComment,
+    fetchDeleteComment,
     fetchEditComment
 } from '../actions';
 
@@ -212,7 +212,7 @@ const mapDispatchToProps = (dispatch) => ({
   downVote: (id) => dispatch(commentDownVote(id)),
   newComment: (id, timestamp, body, author, parentId) => dispatch(newComment(id, timestamp, body, author, parentId)),
   showPost: (id) => dispatch(fetchPost(id)),
-  deleteComment: (id) => dispatch(deleteComment(id)),
+  deleteComment: (id) => dispatch(fetchDeleteComment(id)),
   editComment: (id, timestamp, body) => dispatch(fetchEditComment(id, timestamp, body))
 })
 

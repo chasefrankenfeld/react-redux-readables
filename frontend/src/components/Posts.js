@@ -6,7 +6,8 @@ import {
   newPost, 
   postUpVote, 
   postDownVote,
-  fetchEditPost 
+  fetchEditPost, 
+  fetchDeletedPost
 } from '../actions';
 import FaComment from 'react-icons/lib/fa/comment';
 
@@ -114,6 +115,10 @@ class Posts extends Component {
       postCategoryValue: "",
       postText: ""
     }))
+  }
+
+  deletePost = (id) => {
+    this.props.deletePost(id)
   }
 
   render() {
@@ -265,6 +270,10 @@ class Posts extends Component {
                   Edit
                 </a>
 
+                <a className="post-link post-action-button post-action-button-margin" onClick={() => this.deletePost(post.id)}>
+                  X
+                </a>
+
               </div>
 
             </div>
@@ -287,7 +296,8 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(newPost(id, timestamp, title, body, author, category)),
   upVote: (id) => dispatch(postUpVote(id)),
   downVote: (id) => dispatch(postDownVote(id)),
-  editPost: (id, title, body) => dispatch(fetchEditPost(id, title, body))
+  editPost: (id, title, body) => dispatch(fetchEditPost(id, title, body)),
+  deletePost: (id) => dispatch(fetchDeletedPost(id))
 })
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Posts));

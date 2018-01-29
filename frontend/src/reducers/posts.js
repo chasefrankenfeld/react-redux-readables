@@ -3,7 +3,8 @@ import {
     GET_CATEGORY_POSTS, 
     POST_VOTE,
     NEW_POST, 
-    EDIT_POST
+    EDIT_POST,
+    DELETE_POST
     } from '../actions';
 
 const posts = (state = {}, action) => {
@@ -38,6 +39,11 @@ const posts = (state = {}, action) => {
                 posts: state.posts.map((oldPost) => 
                     (oldPost.id === post.id) ? post : oldPost
                 )
+            }
+        case DELETE_POST:
+            return {
+                ...state,
+                posts: state.posts.filter((oldPost) => oldPost.id !== post.id)
             }
         default:
             return state

@@ -103,6 +103,16 @@ export const postPostVote = (id, option) => (
   ).then(res => res.json())
 )
 
+// DELETE - Delete Post
+
+export const deletePost = (id) => (
+  fetch(`${API}/posts/${id}`, 
+    { 
+      method: "DELETE",
+      headers
+    }
+  ).then(res => res.json())
+)
 
 // COMMMENTS
 

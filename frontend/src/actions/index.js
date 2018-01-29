@@ -7,6 +7,7 @@ export const POST_VOTE = 'POST_VOTE';
 export const POST = 'POST';
 export const NEW_POST = 'NEW_POST';
 export const EDIT_POST = 'EDIT_POST';
+export const DELETE_POST = 'DELETE_POST';
 export const COMMENTS = 'COMMENTS';
 export const COMMENT_VOTE = 'COMMENT_VOTE';
 export const NEW_POST_COMMENT = 'NEW_POST_COMMENT';
@@ -124,6 +125,19 @@ export const editPost = (post) => ({
     post
 })
 
+// Delete post
+
+export const fetchDeletedPost = (id) => dispatch => (
+    API.deletePost(id).then((post) => {
+        dispatch(deletePost(post))
+    })
+);
+
+export const deletePost = (post) => ({
+    type: DELETE_POST,
+    post
+})
+
 // Get Post Comments
 
 export const fetchPostComments = (id) => dispatch => (
@@ -171,7 +185,7 @@ export const newPostComment = (comment) => ({
 
 // Delete comment
 
-export const deleteComment = (id) => dispatch => (
+export const fetchDeleteComment = (id) => dispatch => (
     API.postComment(id).then((comment) => {
         dispatch(deletedComment(comment))
     })
