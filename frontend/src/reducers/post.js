@@ -1,6 +1,6 @@
 import { 
     POST, 
-    POST_VOTE, 
+    POST_VOTE,
     // DELETED_COMMENT 
 } from '../actions';
 

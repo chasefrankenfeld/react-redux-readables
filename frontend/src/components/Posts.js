@@ -1,7 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
-import { fetchAllPosts, newPost, postUpVote, postDownVote } from '../actions';
+import { 
+  fetchAllPosts, 
+  newPost, 
+  postUpVote, 
+  postDownVote,
+  fetchEditPost 
+} from '../actions';
 import FaComment from 'react-icons/lib/fa/comment';
 
 class Posts extends Component {
@@ -13,7 +19,8 @@ class Posts extends Component {
     postTitle: "",
     postText: "",
     postCategoryValue: "",
-    editForm: false
+    editForm: false,
+    postID: ""
   }
 
   componentDidMount() {
@@ -81,6 +88,32 @@ class Posts extends Component {
             postCategoryValue: ""
           })).then(() => this.props.showAllPosts())
         }
+  }
+
+  editPost  = (post) => {
+    this.setState({
+      editForm: true,
+      postID: post.id,
+      postAuthor: post.author,
+      postTitle: post.title,
+      postCategoryValue: post.category,
+      postText: post.body
+    })
+  }
+
+  sumbitEditPost = () => {
+    this.props.editPost(
+      this.state.postID,
+      this.state.postTitle,
+      this.state.postText
+    ).then(() => this.setState({
+      editForm: false,
+      postID: "",
+      postAuthor: "",
+      postTitle: "",
+      postCategoryValue: "",
+      postText: ""
+    }))
   }
 
   render() {
@@ -175,7 +208,9 @@ class Posts extends Component {
             <button 
               className="post-form-button" 
               onClick={() => 
-                this.submitNewPost()
+                this.state.editForm 
+                  ? this.sumbitEditPost()
+                  : this.submitNewPost()
               }
             >Comment</button>
           </div>
@@ -187,6 +222,10 @@ class Posts extends Component {
                   <Link to={"posts/" + post.id} className="post-link">
                       {post.title}
                   </Link>
+              </div>
+
+              <div className="post-body">
+                <p>{post.body}</p>
               </div>
 
               <div className="info">
@@ -222,7 +261,7 @@ class Posts extends Component {
                     <FaComment className="icon-bubble"/>
                 </Link>
 
-                <a className="post-link post-action-button post-action-button-margin">
+                <a className="post-link post-action-button post-action-button-margin" onClick={() => this.editPost(post)}>
                   Edit
                 </a>
 
@@ -247,7 +286,8 @@ const mapDispatchToProps = (dispatch) => ({
   newPost: (id, timestamp, title, body, author, category) => 
     dispatch(newPost(id, timestamp, title, body, author, category)),
   upVote: (id) => dispatch(postUpVote(id)),
-  downVote: (id) => dispatch(postDownVote(id))
+  downVote: (id) => dispatch(postDownVote(id)),
+  editPost: (id, title, body) => dispatch(fetchEditPost(id, title, body))
 })
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Posts));

@@ -6,6 +6,7 @@ export const GET_CATEGORY_POSTS = 'GET_CATEGORY_POSTS';
 export const POST_VOTE = 'POST_VOTE';
 export const POST = 'POST';
 export const NEW_POST = 'NEW_POST';
+export const EDIT_POST = 'EDIT_POST';
 export const COMMENTS = 'COMMENTS';
 export const COMMENT_VOTE = 'COMMENT_VOTE';
 export const NEW_POST_COMMENT = 'NEW_POST_COMMENT';
@@ -100,13 +101,26 @@ export const getPost = (post) => ({
 // Post New Post
 
 export const newPost = (id, timestamp, title, body, author, category) => dispatch => (
-    API.postPost(id, timestamp, title, body, author, category).then((comment) => {
-        dispatch(createNewPost(comment))
+    API.postPost(id, timestamp, title, body, author, category).then((post) => {
+        dispatch(createNewPost(post))
     })
 );
 
 export const createNewPost = (post) => ({
     type: NEW_POST,
+    post
+})
+
+// Put Edit Post
+
+export const fetchEditPost = (id, title, body) => dispatch => (
+    API.editPost(id, title, body).then((post) => {
+        dispatch(editPost(post))
+    })
+)
+
+export const editPost = (post) => ({
+    type: EDIT_POST,
     post
 })
 

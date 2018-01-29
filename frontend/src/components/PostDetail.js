@@ -30,6 +30,10 @@ class PostDetails extends Component {
                         {post.title}
                 </div>
 
+                <div className="post-body">
+                    <p>{post.body}</p>
+                </div>
+
                 <div className="info">
                     <span className="post-link">
                         By                    

@@ -242,6 +242,14 @@ a.no-ul {
   box-sizing: border-box;
 }
 
+.post-body p {
+  color: #222;
+  margin-top: 3px;
+  margin-bottom: 3px;
+  font-size: 13px;
+}
+
+
 /* New Posts */
 
 .post-form-grid {

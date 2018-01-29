@@ -67,6 +67,25 @@ export const postPost = (id, timestamp, title, body, author, category) => (
   ).then(res => res.json())
 )
 
+// PUT - Edit Posts
+
+export const editPost = (id, title, body) => (
+  fetch(`${API}/posts/${id}`, 
+    { 
+      method: "PUT",
+      headers: {
+        ...headers,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        title,
+        body
+      })
+    }
+  ).then(res => res.json())
+)
+
+
 // POST - Post Votes
 
 export const postPostVote = (id, option) => (
