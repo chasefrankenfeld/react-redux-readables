@@ -131,31 +131,21 @@ class Posts extends Component {
     let { categories } = this.props.categories
 
     // This has an error where posts scores are equal
-    if ( this.state.sortByVoteScoreRank === true && posts ) {
-      const voteScoreRank = posts && posts.map((post) => post.voteScore).sort().reverse()
-      let sortedPostsByVoteScore = []
-      voteScoreRank.forEach((voteScore) => {
-        posts.forEach((postObj) => {
-          if ( voteScore === postObj.voteScore ) {
-            sortedPostsByVoteScore.push(postObj)
-          }
-        })
-      })
-      posts = sortedPostsByVoteScore
+    if ( this.state.sortByVoteScoreRank && posts ) {
+      posts.sort(
+        function(a, b) {
+          return b.voteScore - a.voteScore
+        }
+      )
     }
 
     // This has an error where posts timestamps are equal
     if ( this.state.sortByTimestamp && posts ) {
-      const timestampRank = posts && posts.map((post) => post.timestamp).sort().reverse()
-      let sortedPostsByTimestamp = []
-      timestampRank.forEach((timestamp) => {
-        posts.forEach((postObj) => {
-          if ( timestamp === postObj.timestamp ) {
-            sortedPostsByTimestamp.push(postObj)
-          }
-        })
-      })
-      posts = sortedPostsByTimestamp
+      posts.sort(
+        function(a, b) {
+          return b.timestamp - a.timestamp
+        }
+      )
     }
 
     return (
