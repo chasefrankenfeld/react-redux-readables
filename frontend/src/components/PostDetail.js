@@ -20,6 +20,8 @@ class PostDetails extends Component {
 
   render() {
 
+    const Timestamp = require('react-timestamp');
+
     let { post } = this.props.post
 
     return (
@@ -41,6 +43,10 @@ class PostDetails extends Component {
                         ·
                         &nbsp;
                         {post.author}
+                        &nbsp;
+                        ·
+                        &nbsp;
+                        <Timestamp time={post.Timestamp} format="ago" />
                         &nbsp;
                         |
                         &nbsp;

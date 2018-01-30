@@ -95,6 +95,8 @@ class Comments extends Component {
 
     render() {
 
+    const Timestamp = require('react-timestamp');
+
     let { comments } = this.props.comments
 
     return (
@@ -141,7 +143,10 @@ class Comments extends Component {
 
                         <span className="comment-time">
                             &nbsp;·&nbsp;
-                            {comment.timestamp}
+                            <Timestamp 
+                                time={comment.timestamp}
+                                format="ago"
+                            />
                         </span>
                         <span>
                             &nbsp;

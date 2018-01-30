@@ -123,6 +123,8 @@ class Posts extends Component {
 
   render() {
 
+    const Timestamp = require('react-timestamp');
+
     let { posts } = this.props.posts
     if ( this.props.match.params.category && posts ) {
       posts = posts.filter((post) => post.category === this.props.match.params.category )
@@ -230,6 +232,10 @@ class Posts extends Component {
                       ·
                       &nbsp;
                       {post.author}
+                      &nbsp;
+                      ·
+                      &nbsp;
+                      <Timestamp time={post.Timestamp} format="ago" />
                       &nbsp;
                       |
                       &nbsp;
