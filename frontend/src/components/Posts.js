@@ -126,7 +126,7 @@ class Posts extends Component {
     const Timestamp = require('react-timestamp');
 
     let { posts } = this.props.posts
-    
+
     if ( this.props.match.params.category && posts ) {
       posts = posts.filter((post) => post.category === this.props.match.params.category )
     }
@@ -217,7 +217,7 @@ class Posts extends Component {
         {posts && posts.map((post) => 
             <div key={post.id} className="content-container post">            
               <div className="post-title">
-                  <Link to={"posts/" + post.id} className="post-link">
+                  <Link to={post.category + "/" + post.id} className="post-link">
                       {post.title}
                   </Link>
               </div>

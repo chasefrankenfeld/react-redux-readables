@@ -24,7 +24,7 @@ class App extends Component {
             <Posts />
           </div>
         } />
-        <Route exact path='/posts/:id' render={() =>
+        <Route exact path='/:category/:id' render={() =>
           <div>
             <PostDetail />
             <Comments />
