@@ -89,8 +89,8 @@ class Comments extends Component {
 
     }
 
-    deleteComment = (id) => {
-        this.props.deleteComment(id)
+    deleteComment = (id, post) => {
+        this.props.deleteComment(id, post)
     }
 
     render() {
@@ -98,6 +98,7 @@ class Comments extends Component {
     const Timestamp = require('react-timestamp');
 
     let { comments } = this.props.comments
+    let { post } = this.props.post
 
     return (
         <div className="Comments">
@@ -142,12 +143,12 @@ class Comments extends Component {
                         </span>
 
                         <span className="comment-time">
-                            &nbsp;·&nbsp;
-                            <Timestamp 
-                                time={comment.timestamp}
-                                format="ago"
-                            />
+                            &nbsp;
+                            ·
+                            &nbsp;
+                        <Timestamp time={comment.Timestamp} format="ago" />
                         </span>
+
                         <span>
                             &nbsp;
                             |
@@ -190,7 +191,7 @@ class Comments extends Component {
                             |
                             &nbsp;
                         </span>
-                        <a className="comment-action-delete" onClick={() => this.deleteComment(comment.id)}>
+                        <a className="comment-action-delete" onClick={() => this.deleteComment(comment.id, post)}>
                             &nbsp;
                             X
                             &nbsp;
@@ -217,7 +218,7 @@ const mapDispatchToProps = (dispatch) => ({
   downVote: (id) => dispatch(commentDownVote(id)),
   newComment: (id, timestamp, body, author, parentId) => dispatch(newComment(id, timestamp, body, author, parentId)),
   showPost: (id) => dispatch(fetchPost(id)),
-  deleteComment: (id) => dispatch(fetchDeleteComment(id)),
+  deleteComment: (id, post) => dispatch(fetchDeleteComment(id, post)),
   editComment: (id, timestamp, body) => dispatch(fetchEditComment(id, timestamp, body))
 })
 

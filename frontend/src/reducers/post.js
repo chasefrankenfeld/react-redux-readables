@@ -1,15 +1,12 @@
 import { 
     POST, 
     POST_VOTE,
-    // DELETED_COMMENT 
+    POST_COMMENT_COUNT
 } from '../actions';
 
 
 const post = (state = {}, action) => {
-    const { 
-        post, 
-        // postCommentCount
-    } = action;
+    const { post } = action;
 
     switch(action.type) {
         case POST:
@@ -22,14 +19,11 @@ const post = (state = {}, action) => {
                 ...state,
                 post
             }
-        // case DELETED_COMMENT:
-        //     return  {
-        //         ...state,
-        //         post: {
-        //             ...state.post,
-        //             commentCount: postCommentCount
-        //         }
-        //     }
+        case POST_COMMENT_COUNT:
+            return  {
+                ...state,
+                post
+            }
         default:
             return state
     }

@@ -126,6 +126,7 @@ class Posts extends Component {
     const Timestamp = require('react-timestamp');
 
     let { posts } = this.props.posts
+    
     if ( this.props.match.params.category && posts ) {
       posts = posts.filter((post) => post.category === this.props.match.params.category )
     }

@@ -12,6 +12,7 @@ export const COMMENTS = 'COMMENTS';
 export const COMMENT_VOTE = 'COMMENT_VOTE';
 export const NEW_POST_COMMENT = 'NEW_POST_COMMENT';
 export const DELETED_COMMENT = 'DELETED_COMMENT';
+export const POST_COMMENT_COUNT = 'POST_COMMENT_COUNT';
 export const EDIT_COMMENT = 'EDIT_COMMENT';
 
 
@@ -185,15 +186,24 @@ export const newPostComment = (comment) => ({
 
 // Delete comment
 
-export const fetchDeleteComment = (id) => dispatch => (
+export const fetchDeleteComment = (id, post) => dispatch => (
     API.postComment(id).then((comment) => {
         dispatch(deletedComment(comment))
+        dispatch(changePostCommentCount({
+            ...post,
+            "commentCount": post.commentCount -1
+        }))
     })
 );
 
 export const deletedComment = (comment) => ({
     type: DELETED_COMMENT,
     comment
+})
+
+export const changePostCommentCount = (post) => ({
+    type: POST_COMMENT_COUNT,
+    post
 })
 
 // Edit post comment

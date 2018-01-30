@@ -4,7 +4,8 @@ import {
     POST_VOTE,
     NEW_POST, 
     EDIT_POST,
-    DELETE_POST
+    DELETE_POST,
+    POST_COMMENT_COUNT
     } from '../actions';
 
 const posts = (state = {}, action) => {
@@ -44,6 +45,13 @@ const posts = (state = {}, action) => {
             return {
                 ...state,
                 posts: state.posts.filter((oldPost) => oldPost.id !== post.id)
+            }
+        case POST_COMMENT_COUNT:
+            return {
+                ...state,
+                posts: state.posts.map((oldPost) => 
+                    (oldPost.id === post.id) ? post : oldPost
+                )
             }
         default:
             return state
