@@ -1,7 +1,8 @@
 import { 
     POST, 
     POST_VOTE,
-    POST_COMMENT_COUNT
+    POST_COMMENT_COUNT,
+    EDIT_POST
 } from '../actions';
 
 
@@ -15,6 +16,11 @@ const post = (state = {}, action) => {
                 post
             }
         case POST_VOTE:
+            return {
+                ...state,
+                post
+            }
+        case EDIT_POST:
             return {
                 ...state,
                 post
