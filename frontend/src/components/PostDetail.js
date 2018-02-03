@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Redirect } from 'react-router-dom';
 import { 
     fetchPost, 
     postUpVote, 
@@ -14,6 +14,7 @@ import {
 class PostDetails extends Component {
 
     state = {
+        redirect: false,
         editForm: false,
         postID: "",
         postAuthor: "",
@@ -77,6 +78,9 @@ class PostDetails extends Component {
 
   deletePost = (id) => {
     this.props.deletePost(id)
+    this.setState({
+        redirect: true
+    })
   }
 
   render() {
@@ -88,6 +92,9 @@ class PostDetails extends Component {
 
     return (
         <div className="Posts">
+            {(this.state.redirect || (post && post.deleted)) &&
+                <Redirect to={"/"} />
+            }
             {post && !this.state.editForm &&
             <div key={post.id} className="content-container post">            
                 <div className="post-title">
