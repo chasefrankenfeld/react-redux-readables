@@ -6,10 +6,10 @@ import {
     commentUpVote, 
     commentDownVote,
     newComment,
-    fetchPost,
     fetchDeleteComment,
     fetchEditComment
-} from '../actions';
+} from '../actions/commentsActions';
+import { fetchPost } from '../actions/postsActions';
 
 class Comments extends Component {
 

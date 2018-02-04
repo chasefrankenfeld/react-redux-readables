@@ -5,7 +5,6 @@ import Posts from './Posts';
 import Categories from './Categories';
 import PostDetail from './PostDetail';
 import Comments from './Comments';
-// import CategoryPosts from './CategoryPosts';
 
 class App extends Component {
   render() {

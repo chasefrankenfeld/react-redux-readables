@@ -3,7 +3,7 @@ import {
     POST_VOTE,
     POST_COMMENT_COUNT,
     EDIT_POST
-} from '../actions';
+} from '../actions/index';
 
 
 const post = (state = {}, action) => {

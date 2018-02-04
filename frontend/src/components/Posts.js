@@ -8,7 +8,7 @@ import {
   postDownVote,
   fetchEditPost, 
   fetchDeletedPost
-} from '../actions';
+} from '../actions/postsActions';
 import FaComment from 'react-icons/lib/fa/comment';
 
 class Posts extends Component {

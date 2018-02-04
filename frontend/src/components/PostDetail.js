@@ -7,9 +7,10 @@ import {
     postDownVote, 
     fetchAllPosts, 
     fetchDeletedPost,
-    fetchAllCategories,
     fetchEditPost
-} from '../actions';
+} from '../actions/postsActions';
+import { fetchAllCategories } from '../actions/categoryActions';
+
 
 class PostDetails extends Component {
 
@@ -177,9 +178,9 @@ class PostDetails extends Component {
                         onChange={this.handlePostCategory}
                         >
                         <option value="">Select a category</option>
-                        {categories && categories.map((category) => 
-                            <option value={category.name} key={category.name}>{category.name}</option>
-                        )}
+                            {categories && categories.map((category) => 
+                                <option value={category.name} key={category.name}>{category.name}</option>
+                            )}
                         </select>
                     </div>
                     <textarea 

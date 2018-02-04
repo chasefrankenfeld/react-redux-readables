@@ -1,12 +1,12 @@
 import { 
-    GET_ALL_POSTS, 
-    GET_CATEGORY_POSTS, 
-    POST_VOTE,
-    NEW_POST, 
-    EDIT_POST,
-    DELETE_POST,
-    POST_COMMENT_COUNT
-    } from '../actions';
+        GET_ALL_POSTS, 
+        POST_VOTE,
+        NEW_POST, 
+        EDIT_POST,
+        DELETE_POST,
+        GET_CATEGORY_POSTS, 
+        POST_COMMENT_COUNT,
+    } from '../actions/index';
 
 const posts = (state = {}, action) => {
     const { posts, post } = action;

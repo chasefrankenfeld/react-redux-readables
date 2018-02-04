@@ -1,4 +1,6 @@
-import { GET_ALL_CATEGORIES } from '../actions';
+import { 
+    GET_ALL_CATEGORIES 
+} from '../actions/index';
 
 
 const categories = (state = {}, action) => {

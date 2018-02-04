@@ -4,7 +4,7 @@ import {
     NEW_POST_COMMENT,
     DELETED_COMMENT,
     EDIT_COMMENT
-} from '../actions';
+} from '../actions/index';
 
 const comments = (state = {}, action) => {
     const { comments, comment } = action;
