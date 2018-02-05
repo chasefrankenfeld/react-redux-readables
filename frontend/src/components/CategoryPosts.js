@@ -7,7 +7,7 @@ import FaComment from 'react-icons/lib/fa/comment';
 class CategoryPosts extends Component {
 
     componentDidMount() {
-        this.props.showCategoryPosts(this.props.match.params.category)
+        this.props.fetchCategoryPosts(this.props.match.params.category)
     };
 
     render() {
@@ -90,8 +90,4 @@ const mapStateToProps = ({posts}) => {
     }
 };
   
-const mapDispatchToProps = (dispatch) => ({
-    showCategoryPosts: (category) => dispatch(fetchCategoryPosts(category))
-})
-  
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(CategoryPosts));
+export default withRouter(connect(mapStateToProps, { fetchCategoryPosts(category) })(CategoryPosts));

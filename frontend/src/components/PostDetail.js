@@ -7,9 +7,9 @@ import {
     postDownVote, 
     fetchAllPosts, 
     fetchDeletedPost,
-    fetchEditPost
 } from '../actions/postsActions';
 import { fetchAllCategories } from '../actions/categoryActions';
+import PostForm from './PostForm'
 
 
 class PostDetails extends Component {
@@ -17,11 +17,6 @@ class PostDetails extends Component {
     state = {
         redirect: false,
         editForm: false,
-        postID: "",
-        postAuthor: "",
-        postTitle: "",
-        postCategoryValue: "",
-        postText: ""
     }
 
   componentDidMount() {
@@ -41,40 +36,13 @@ class PostDetails extends Component {
   editPost = (post) => {
       this.setState({
         editForm: true,
-        postID: post.id,
-        postAuthor: post.author,
-        postTitle: post.title,
-        postCategoryValue: post.category,
-        postText: post.body
       })
   }
 
-  handlePostTitle = (event) => {
-    this.setState({
-      postTitle: event.target.value
-    })
-  }
-
-  handlePostText = (event) => {
-    this.setState({
-      postText: event.target.value
-    })
-  }
-
-
   sumbitEditPost = () => {
-    this.props.editPost(
-      this.state.postID,
-      this.state.postTitle,
-      this.state.postText
-    ).then(() => this.setState({
-      editForm: false,
-      postID: "",
-      postAuthor: "",
-      postTitle: "",
-      postCategoryValue: "",
-      postText: ""
-    }))
+    this.setState({
+        editForm: false,
+    })
   }
 
   deletePost = (id) => {
@@ -89,7 +57,6 @@ class PostDetails extends Component {
     const Timestamp = require('react-timestamp');
 
     let { post } = this.props.post
-    const { categories } = this.props.categories
 
     return (
         <div className="Posts">
@@ -151,52 +118,7 @@ class PostDetails extends Component {
             }
 
             {post && this.state.editForm &&
-            <div className="content-container post">
-                <form>
-                    <div className="post-form-grid">
-                        <div>
-                        <input
-                            type="text"
-                            className="post-form post-form-author"
-                            placeholder="Name"
-                            value={this.state.postAuthor}
-                            onChange={this.handlePostAuthor}
-                        />
-                        </div>
-                        <div>
-                        <input
-                            type="text"
-                            className="post-form post-form-title"
-                            placeholder="Title"
-                            value={this.state.postTitle}
-                            onChange={this.handlePostTitle}
-                        />
-                        </div>
-                        <select 
-                        className="post-form post-form-categories"
-                        value={this.state.postCategoryValue}
-                        onChange={this.handlePostCategory}
-                        >
-                        <option value="">Select a category</option>
-                            {categories && categories.map((category) => 
-                                <option value={category.name} key={category.name}>{category.name}</option>
-                            )}
-                        </select>
-                    </div>
-                    <textarea 
-                        className="post-form post-form-text-area"
-                        placeholder="Share your thoughts..."
-                        value={this.state.postText}
-                        onChange={this.handlePostText}
-                    />
-                </form>
-                <div className="post-form-button-align">
-                    <button 
-                        className="post-form-button" 
-                        onClick={() => this.sumbitEditPost()}
-                    >Post</button>
-                </div>
-            </div>
+                <PostForm sumbitEditPost={this.sumbitEditPost}/>
             }
         </div>
     );
@@ -217,8 +139,6 @@ const mapDispatchToProps = (dispatch) => ({
     downVote: (id) => dispatch(postDownVote(id)),
     deletePost: (id) => dispatch(fetchDeletedPost(id)),
     showAllCategories: () => dispatch(fetchAllCategories()),
-    editPost: (id, title, body) => dispatch(fetchEditPost(id, title, body)),
-
 })
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(PostDetails));
