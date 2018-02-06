@@ -60,8 +60,11 @@ class PostDetails extends Component {
 
     return (
         <div className="Posts">
-            {(this.state.redirect || (post && post.deleted)) &&
+            {this.state.redirect &&
                 <Redirect to={"/"} />
+            }
+            {(post && post.deleted) &&
+                <Redirect to={"/404error"} />
             }
             {post && !this.state.editForm &&
             <div key={post.id} className="content-container post">            
