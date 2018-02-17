@@ -57,8 +57,12 @@ export const postVote = (post) => ({
 // Get Post
 
 export const fetchPost = (id) => dispatch => (
-    API.postPostVote(id).then((post) => {
-        dispatch(getPost(post))
+    API.fetchPost(id).then((post) => {
+        if (!post.id) {
+            dispatch(getPost({deleted: true}))
+        } else {
+            dispatch(getPost(post))
+        }
     })
 );
 
